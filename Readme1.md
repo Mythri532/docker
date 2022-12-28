@@ -53,7 +53,7 @@ Docker commands:
 
    docker pull ubuntu 
 
- 3.To show all images 
+3.To show all images 
 
    docker images 
 
@@ -77,7 +77,7 @@ Docker commands:
 
    docker run <image-name> 
 
-    note: if you use an image that is not in your local else it pull the image from  docker registry. 
+   note: if you use an image that is not in your local else it pull the image from  docker registry. 
 
    docker create --name mycontainer <imagename> 
    
@@ -85,7 +85,7 @@ Docker commands:
 
 8. To run a container in attached mode(foreground) and in detached mode (background) 
 
- By default, Docker runs the container in attached mode. Meaning it’s attached to the terminal session, where it displays output and messages. 
+   By default, Docker runs the container in attached mode. Meaning it’s attached to the terminal session, where it displays output and messages. 
 
 if you want to keep the container and current terminal session separate, you can run the container in the background using the -d attribute 
 
@@ -325,14 +325,6 @@ ImageName − This is the name you want to give to your image.
 TagName − This is the tag you want to give to your image. 
 
 Dir − The directory where the Docker File is present. 
-
- 
-
- 
-
- 
-
- 
 
 FROM alpine 
 
