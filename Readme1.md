@@ -45,43 +45,43 @@ Docker commands:
 
 1.To start docker 
 
-   systemctl start docker  
+  systemctl start docker  
 
 2.To pull image from repository 
 
-   docker pull centos 
+  docker pull centos 
 
-   docker pull ubuntu 
+  docker pull ubuntu 
 
 3.To show all images 
 
-   docker images 
+  docker images 
 
 4. creates the container named mycontainer from centos image 
 
-   docker create --name mycontainer centos 
+  docker create --name mycontainer centos 
 
-   creates the container named mycontainer from centos image  
+  creates the container named mycontainer from centos image  
 
-5. To delete docker container 
+5.To delete docker container 
 
-   docker rm <containername> 
+  docker rm <containername> 
 
 6.To remove image 
 
-   docker rmi <imagename> 
+  docker rmi <imagename> 
 
 7.To run a container  
 
-   docker run [OPTIONS] IMAGE [COMMAND] [ARG...] 
+  docker run [OPTIONS] IMAGE [COMMAND] [ARG...] 
 
-   docker run <image-name> 
+  docker run <image-name> 
 
-   note: if you use an image that is not in your local else it pull the image from  docker registry. 
+  note: if you use an image that is not in your local else it pull the image from  docker registry. 
 
-   docker create --name mycontainer <imagename> 
+  docker create --name mycontainer <imagename> 
    
-   docker create --name mycontainer <imageid> 
+  docker create --name mycontainer <imageid> 
 
 8. To run a container in attached mode(foreground) and in detached mode (background) 
 
@@ -102,8 +102,8 @@ This allows you to execute the commands inside the container
 When you run a container, the only way to access the process is from inside of it. To allow external connections to the container, you have to open (publish) specific ports. 
 
    -p [host_ip]:[host_port]:[container_port] 
-
-     docker container run -p 8080:80 [docker_image] 
+    
+    docker container run -p 8080:80 [docker_image] 
 
 11. To start the container 
 
