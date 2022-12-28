@@ -1,22 +1,22 @@
 # Overview of Docker
 
-**what is Docker**
+**Docker-**
 Docker is a containerization platform which packages your application and all its dependencies together in the form of containers so as to ensure that your application works seamlessly in any environment, be it development, test or production
 
-**what is Docker container**
+**Docker container-**
 Docker containers include the application and all of its dependencies. It shares the kernel with other containers, running as isolated processes in user space on the host operating system. Docker containers are not tied to any specific infrastructure: they run on any computer, on any infrastructure, and in any cloud.
 
-**Docker Architecture**
+**Docker Architecture-**
 
-a) Docker Daemon - listens to Docker API requests and manages Docker objects such as images, containers, networks  and volumes. 
+**a) Docker Daemon** - listens to Docker API requests and manages Docker objects such as images, containers, networks  and volumes. 
 
-b) Docker Clients - With the help of Docker Clients, users can interact with Docker. 
+**b) Docker Clients** - With the help of Docker Clients, users can interact with Docker. 
 
-c) Docker Host- provides a complete environment to execute and run applications. It comprises of the Docker daemon, Images, Containers, Networks, and Storage. 
+**c) Docker Host**- provides a complete environment to execute and run applications. It comprises of the Docker daemon, Images, Containers, Networks, and Storage. 
 
-d) Docker Registry -Docker Registry manages and stores the Docker images. Public Registry is also called as Docker hub.Private Registry - It is used to share images within the enterprise. 
+**d) Docker Registry** -Docker Registry manages and stores the Docker images. Public Registry is also called as Docker hub.Private Registry - It is used to share images within the enterprise. 
 
-e) Docker Images- are read-only templates that you build from a set of instructions written in Dockerfile. 
+**e) Docker Images**- are read-only templates that you build from a set of instructions written in Dockerfile. 
 
 Architecture is referred in 
 
@@ -41,46 +41,33 @@ Set up the repository
     5. sudo docker run hello-world 
    
 
-Docker commands: 
+**Docker commands:**
 
 1.To start docker 
-
   systemctl start docker  
 
 2.To pull image from repository 
-
   docker pull centos 
-
   docker pull ubuntu 
 
 3.To show all images 
-
   docker images 
 
-4. creates the container named mycontainer from centos image 
-
+4.Creates the container named mycontainer from centos image 
   docker create --name mycontainer centos 
-
   creates the container named mycontainer from centos image  
 
 5.To delete docker container 
-
   docker rm <containername> 
 
 6.To remove image 
-
   docker rmi <imagename> 
 
 7.To run a container  
-
   docker run [OPTIONS] IMAGE [COMMAND] [ARG...] 
-
   docker run <image-name> 
-
   note: if you use an image that is not in your local else it pull the image from  docker registry. 
-
   docker create --name mycontainer <imagename> 
-   
   docker create --name mycontainer <imageid> 
 
 8. To run a container in attached mode(foreground) and in detached mode (background) 
