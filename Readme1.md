@@ -3,10 +3,10 @@
 **Docker**<br>
 Docker is a containerization platform which packages your application and all its dependencies together in the form of containers so as to ensure that your application works seamlessly in any environment, be it development, test or production
 
-**Docker container**<br>
+**Docker Container**<br>
 Docker containers include the application and all of its dependencies. It shares the kernel with other containers, running as isolated processes in user space on the host operating system. Docker containers are not tied to any specific infrastructure: they run on any computer, on any infrastructure, and in any cloud.
 
-# Docker Architecture components
+# Docker Architecture Components
 
 **a) Docker Daemon** - listens to Docker API requests and manages Docker objects such as images, containers, networks  and volumes. 
 
@@ -18,14 +18,9 @@ Docker containers include the application and all of its dependencies. It shares
 
 **e) Docker Images** - are read-only templates that you build from a set of instructions written in Dockerfile. 
 
-Architecture is referred in 
-
-**Workflow of Dock
-
-
 # Installation of docker in centos machine. 
 
-Set up the repository 
+     Set up the repository 
 
   1. sudo yum install -y yum-utils 
 
@@ -65,15 +60,14 @@ Set up the repository
 7. To run a container<br>
    docker run [OPTIONS] IMAGE [COMMAND] [ARG...]<br> 
    docker run <image-name><br>
+   
    note: if you use an image that is not in your local else it pull the image from  docker registry.<br> 
    docker create --name mycontainer <imagename><br>
    docker create --name mycontainer <imageid><br> 
 
 8. To run a container in attached mode(foreground) and in detached mode (background)<br>
 
-   By default, Docker runs the container in attached mode. Meaning it’s attached to the terminal session, where it displays output and messages.<br>
-
-   if you want to keep the container and current terminal session separate, you can run the container in the background using the -d attribute<br>
+   By default, Docker runs the container in attached mode. Meaning it’s attached to the terminal session, where it displays output and messages.<br>if you want to keep the container and current terminal session separate, you can run the container in the background using the -d<br> attribute<br>
 
    docker container run -d [docker_image]<br>
 
@@ -84,7 +78,8 @@ Set up the repository
 
 10. Run a container and publisher container port <br> 
 
-    When you run a container, the only way to access the process is from inside of it. To allow external connections to the container, you    have<br> to open (publish) specific ports.<br> 
+    When you run a container, the only way to access the process is from inside of it. To allow external connections to the container, you    have<br> to open (publish) specific ports.<br>
+     
     -p [host_ip]:[host_port]:[container_port]<br>
     docker container run -p 8080:80 [docker_image]<br>
 
@@ -127,11 +122,12 @@ Set up the repository
 
     docker container attach [options] container<br>
 
-21. Default mode - The above command links the standard output (stdout), and the standard error (stderr) streams with our terminal. So, we can see the console output of the container in our terminal.<br> 
+21. Default mode - The above command links the standard output (stdout), and the standard error (stderr) streams with our terminal.<br> 
+    So, we can see the console output of the container in our terminal.<br> 
 
     docker run --name test_redis<br> 
 
-22. Interactive mode – Let us to interact with the container from out terminal. -I option attaches a standard input of the bash shell to the container.<br> 
+22. Interactive mode – Let us to interact with the container from out terminal. -I option attaches a standard input of the bash shell to the<br>container.<br> 
 
 23. Detached mode - -d option which lets the container to run in background.<br> 
 
@@ -165,6 +161,7 @@ Set up the repository
 30.  docker checkpoint<br> 
      checkpoint and Restore is an experimental feature that allows you to freeze a running container by checkpointing it<br>
      which turns its state into a collection of files on disk. Later, the  container can be restored from the point it was frozen.<br> 
+
      Usage:  docker checkpoint create [OPTIONS] CONTAINER CHECKPOINT<br>
 
      Create a checkpoint from a running container<br>
@@ -181,6 +178,7 @@ Set up the repository
 33.  docker container logs [options] container-name<br> 
      Fetches the container logs  
      docker container ls [options] <br>
+     
      docker container ls -a <br> 
      Lists the running container by default and lists all container <br>  
 
@@ -243,43 +241,49 @@ Docker file instruction command<br>
 
 **COPY**- copies the file or directory from local host machine to container file system<br>
 
-**CMD**- specifies a command to execute when the image is run. CMD is the command the container executes by default when you launch the built<br> image.<br> 
+**CMD**- specifies a command to execute when the image is run. CMD is the command the container executes by default when you launch the built image.<br> 
 
 **MAINTAINER**- command is the person who is going to maintain this image. Here you specify the  keyword and just mention the email ID.<br> 
+
 **ENTRYPOINT** - The ENTRYPOINT instruction works very similarly to CMD in that it is used to specify the command executed.<br> 
   when the container is started. However, where it differs is that ENTRYPOINT doesn't allow you to override the command.<br> 
 
 **ADD** - The ADD instruction copies new files, directories or remote file URLs from source and adds them to the filesystem of the imag<br> 
  at the  path destination.<br> 
 
-**User** - The USER instruction sets the user name (or UID) and optionally the user group (or GID) to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.<br> 
+**USER** - The USER instruction sets the user name (or UID) and optionally the user group (or GID) to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.<br> 
 
-**Onbuild** - The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time,<br>  
-when the image is used as the base for another build. The trigger will be executed in the context of the downstream build, <br> 
-as if it had been inserted immediately after the FROM instruction in the downstream Dockerfile.<br> 
+**ONBUILD** - The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time,when the image is used as the base<br> for another build. The trigger will be executed in the context of the downstream build,as if it had been inserted immediately after<br>the FROM instruction in the downstream Dockerfile.<br> 
 
-**Label** -The LABEL Dockerfile instruction adds metadata to an image. A LABEL is a key-value pair. To include spaces within a LABELvalue, use<br>  quotes and backslashes as you would in command-line parsing.<br> 
-Example - LABEL "com.example.vendor"="ACME Incorporated"<br> 
+**LABEL** -The LABEL Dockerfile instruction adds metadata to an image. A LABEL is a key-value pair. To include spaces within a LABELvalue, use<br>  quotes and backslashes as you would in command-line parsing.Example - LABEL "com.example.vendor"="ACME Incorporated"<br> 
 
 **ARG** - The ARG instruction defines a variable that users can pass at build-time to the builder with the docker buildcommand using the <br> --build-arg varname=value flag. A Dockerfile may include one or more ARG instructions.<br> 
+
 SHELL ["executable", "parameters"]<br> 
 
-**Shell** - The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux<br> is<br> ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.<br>
+**SHELL** - The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux<br> is<br> ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.<br>
 
-**Healthcheck** - The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working. This can detect<br> cases<br>  such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still<br> running.<br> 
-**Expose** - The EXPOSE instruction tells Docker that the container listens on the specified network ports at runtime. To actually publish the<br> port when running the container, use the -p flag on docker run to publish and map one or more ports, or the -P flag to publish all<br>  exposed ports and map them to high-order ports.<br> 
+**HEALTHCHECK** - The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working. This can detect<br> cases<br>  such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still<br> running.<br> 
+
+**EXPOSE** - The EXPOSE instruction tells Docker that the container listens on the specified network ports at runtime. To actually publish the<br> port when running the container, use the -p flag on docker run to publish and map one or more ports, or the -P flag to publish all<br>  exposed ports and map them to high-order ports.<br> 
+
 **ENV** - The ENV instruction sets the environment variable key to the value value.<br> 
-**Volume** - The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from <br> native host or other containers. The value can be a JSON array, VOLUME "/var/log/", or a plain string with multiple arguments,<br>  
-such as VOLUME /var/log or VOLUME /var/log /var/db.<br> 
+
+**VOLUME** - The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from <br> native host or other containers. The value can be a JSON array, VOLUME "/var/log/", or a plain string with multiple arguments,such as VOLUME<br>
+/var/log or VOLUME /var/log /var/db.<br> 
 
 Once the dockerfile is ready we can execute docker build command to build an image from docker file.<br> 
 
 **docker build –t image-name:tagname <dir> or docker build –t dockerfile.**<br> 
 
 **-t** − is to mention a tag to the image<br> 
+
 **ImageName** − This is the name you want to give to your image.<br>  
-**TagName** − This is the tag you want to give to your image.<br>  
+
+**TagName** − This is the tag you want to give to your image.<br>
+
 **Dir** − The directory where the Docker File is present.<br> 
+
 
 **Examples**<br> 
 
@@ -294,8 +298,8 @@ RUN apk update <br>
 RUN apk add wget <br> 
 RUN rm -rf /var/cache/apk/*<br>  
 WORKDIR /root/ <br> 
-ENTRYPOINT [ "wget"] 
-CMD ["--help"]
+ENTRYPOINT [ "wget"]<br> 
+CMD ["--help"]<br>
 
 FROM httpd:2.4<br>
 LABEL AUTHOR=user@example.com<br>
