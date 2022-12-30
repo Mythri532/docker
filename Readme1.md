@@ -469,42 +469,41 @@ you could create one file which would start both the containers as a service wit
 
 Docker-compose Installation<br> 
 
-Step 1: curl -L "https://github.com/docker/compose/releases/download/1.10.0-rc2/dockercompose 
-        -$(uname -s) -$(uname -m)" -o /home/demo/docker-compose 
+Step 1: curl -L "https://github.com/docker/compose/releases/download/1.10.0-rc2/dockercompose<br>
+        -$(uname -s) -$(uname -m)" -o /home/demo/docker-compose<br> 
 
-Step 2: Next, we need to provide execute privileges to the downloaded Docker Compose file, using the following command   
+Step 2: Next, we need to provide execute privileges to the downloaded Docker Compose file, using the following command<br>   
+        chmod +x /home/demo/docker-compose <br> 
 
-        chmod +x /home/demo/docker-compose 
-
-Step 3: docker-compose version 
+Step 3: docker-compose version<br> 
 
 # Creating the docker-compose file 
 
-sudo vi docker-compose.yml 
+sudo vi docker-compose.yml<br>
 
-version: 2
-services:
-  databases:
-    image: mysql
-    ports:
-    - "3306: 3306"
-    environment:
-    - MYSQL_ROOT_PASSWORD=password
-    - MYSQL_USER=user
-    - MYSQL_PASSWORD=password
-    - MYSQL_DATABASE=demodb
-  web:
-    image: nginx
+version: 2<br>
+services:<br>
+  databases:<br>
+    image: mysql<br>
+    ports:<br>
+    - "3306: 3306"<br>
+    environment:<br>
+    - MYSQL_ROOT_PASSWORD=password<br>
+    - MYSQL_USER=user<br>
+    - MYSQL_PASSWORD=password<br>
+    - MYSQL_DATABASE=demodb<br>
+  web:<br>
+    image: nginx<br>
 
-The database and web keyword are used to define two separate services. One will be running our mysql database and the other will be our nginx web server.The image keyword is used to specify the image from dockerhub for our mysql and nginx containers.For the database, we are using the ports keyword to mention the ports that need to be exposed for mysql and then, we also specify the environment variables for mysql which are required to run mysql. 
+The database and web keyword are used to define two separate services. One will be running our mysql database and the other will be our nginx<br> web server.The image keyword is used to specify the image from dockerhub for our mysql and nginx containers.For the database, we are<br> using the ports keyword to mention the ports that need to be exposed for mysql and then, we also specify the environment variables for<br> mysql which are required to run mysql.<br> 
 
-services:
-  webapp:
-    image: examples/web
-    ports:
-      - "8000:8000"
-    volumes:
-      - "/data"
+services:<br>
+  webapp:<br>
+    image: examples/web<br>
+    ports:<br>
+      - "8000:8000"<br>
+    volumes:<br>
+      - "/data"<br>
 
 
 
