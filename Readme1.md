@@ -502,9 +502,9 @@ services:<br>
   webapp:<br>
     image: examples/web<br>
     ports:<br>
-      - "8000:8000"<br>
+    - "8000:8000"<br>
     volumes:<br>
-      - "/data"<br>
+    - "/data"<br>
 
 
 
