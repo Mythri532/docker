@@ -1,34 +1,33 @@
 # Overview of Docker
 
-**Docker-**
+**Docker**<br>
 Docker is a containerization platform which packages your application and all its dependencies together in the form of containers so as to ensure that your application works seamlessly in any environment, be it development, test or production
 
-**Docker container-**
+**Docker container**<br>
 Docker containers include the application and all of its dependencies. It shares the kernel with other containers, running as isolated processes in user space on the host operating system. Docker containers are not tied to any specific infrastructure: they run on any computer, on any infrastructure, and in any cloud.
 
-# Docker Architecture
+# Docker Architecture components
 
 **a) Docker Daemon** - listens to Docker API requests and manages Docker objects such as images, containers, networks  and volumes. 
 
 **b) Docker Clients** - With the help of Docker Clients, users can interact with Docker. 
 
-**c) Docker Host**- provides a complete environment to execute and run applications. It comprises of the Docker daemon, Images, Containers, Networks, and Storage. 
+**c) Docker Host** - provides a complete environment to execute and run applications. It comprises of the Docker daemon, Images, Containers, Networks, and Storage. 
 
-**d) Docker Registry** -Docker Registry manages and stores the Docker images. Public Registry is also called as Docker hub.Private Registry - It is used to share images within the enterprise. 
+**d) Docker Registry** - Docker Registry manages and stores the Docker images. Public Registry is also called as Docker hub.Private Registry - It is used to share images within the enterprise. 
 
-**e) Docker Images**- are read-only templates that you build from a set of instructions written in Dockerfile. 
+**e) Docker Images** - are read-only templates that you build from a set of instructions written in Dockerfile. 
 
 Architecture is referred in 
 
-**Workflow of Docker Container**
-  Referred in 
+**Workflow of Dock
 
 
 # Installation of docker in centos machine. 
 
 Set up the repository 
 
-  1.  sudo yum install -y yum-utils 
+  1. sudo yum install -y yum-utils 
 
   2. sudo yum-config-manager \ 
     --add-repo \ 
@@ -44,14 +43,14 @@ Set up the repository
 # Docker commands:
 
 1.<p>To start docker<br> 
-  systemctl start docker</p>  
+  systemctl start docker<br>  
 
-2.<p>To pull image from repository - 
+2.To pull image from repository<br> 
   docker pull centos<br>
-  docker pull ubuntu</p> 
+  docker pull ubuntu<br>
 
-3.To show all images 
-  docker images 
+3.To show all images<br>
+  docker images<br>
 
 4.Creates the container named mycontainer from centos image 
   docker create --name mycontainer centos 
