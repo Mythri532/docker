@@ -281,184 +281,170 @@ RUN apk add wget
 RUN rm -rf /var/cache/apk/* 
 WORKDIR /root/ 
 ENTRYPOINT [ "wget"] 
-CMD ["--help"] 
+CMD ["--help"]
+
+FROM httpd:2.4
+LABEL AUTHOR=user@example.com
+LABEL VERSION=0.1
+COPY mypage.html /usr/local/apache2/htdocs/mypage.html
+WORKDIR /usr/local/apache2
+COPY mypage.html htdocs/mypage.html
+
+FROM ubuntu 
+RUN apt-get update 
+RUN apt-get install –y apache2 
+RUN apt-get install –y apache2-utils 
+RUN apt-get clean 
+EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+
+# Dockerize an java application
+ 
+1.mkdir javaapp<br>
+
+2.Add the below lines in vi javaapp<br>
+public class Sample {<br>
+        public static void main(String[] args) {<br>
+        System.out.println("Hello, World!");<br>
+    }<br>
+
+}<br>
+
+3.Add the below lines in dockerfile.<br>
+
+FROM openjdk:11
+COPY . /var/www/java
+WORKDIR /var/www/java
+RUN  javac Sample.java
+RUN useradd nonroot
+USER nonroot
+CMD ["java","Sample"]
 
 From the built image docker container can be created . 
 
- 
+# Docker volumes. 
 
-Docker volumes. 
+Docker volumes which is used to persist data backup.To define Docker Volumes, they are file systems that can be mounted on Docker containers. 
+They help in preserving the data and are independent of the container life cycle. One of the major advantages of Docker Volumes is that it allows the developers to backup their data and also allows easy sharing of file systems among Docker containers.  
 
-Docker volumes which is used to persist data backup.  
+It is also possible to mount the same volume to different containers and this allows easy sharing of data between them and this can be easily achieved with the use of simple commands and flags. 
 
-To define Docker Volumes, they are file systems that can be mounted on Docker containers. 
+# Creation of docker Volume 
 
- They help in preserving the data and are independent of the container life cycle.  
-
-One of the major advantages of Docker Volumes is that it allows the developers to backup their data and also allows easy sharing of file systems among Docker containers.  
-
-We can easily mount a volume when we launch a Docker container. 
-
- It is also possible to mount the same volume to different containers and this allows easy sharing of data between them and this can be easily achieved with the use of simple commands and flags. 
-
-Creation of docker Volume 
-
-Sudo docker volume create <volume-name> 
+sudo docker volume create <volume-name> 
 
 Docker creates a particular directory for volume on the local machine 
 
 List all the docker volumes. 
-
-Sudo docker volume list 
+sudo docker volume list 
 
 Inspecting a docker volume 
 
-Sudo docker volume inspect <volume-name> 
+sudo docker volume inspect <volume-name> 
 
 Mounting docker volumes. 
 
 sudo docker run −−mount source=<name of volume>,destination=<path of a directory in container>/volumename <image_name> 
 
-For example- sudo docker run −it −−mount source=myVolume,destination=/usr/src/app/myvolume ubuntu 
-
- 
+For example
+sudo docker run −it −−mount source=myVolume,destination=/usr/src/app/myvolume ubuntu 
 
 In order check the volume for stopped container. You need to start the container and need to execute docker exec –it <container-name> /bin/bash command. 
-
- 
-
 You can mount a docker volume to a docker container using the mount –flag. when you are running the Docker run command. You can also mount the same volume to multiple Docker containers and all the containers would have a shared access to the volume.   
 
+**Deleting a docker volume** 
  
-
-Deleting a docker volume. 
- 
-
-In order to delete a docker volume, you need to ensure that the volume is not in use at that moment. If a container is running with the volume mounted in it, you would have to stop the container first before removing the mounted volume. After you have stopped the container, you can use the following command to remove the volume. 
-
- 
+ In order to delete a docker volume, you need to ensure that the volume is not in use at that moment. If a container is running with the volume mounted in it, you would have to stop the container first before removing the mounted volume. After you have stopped the container, you can use the following command to remove the volume. 
 
 sudo docker rm <name of volume> 
 
 In order to delete all the volumes at once, make sure that none of the volumes is currently in use  
 
-Sudo docker volume prune. 
+sudo docker volume prune. 
 
 Sharing a Docker Volume with multiple Docker Containers 
-
- 
-
 If you want to share multiple files with multiple docker container ,you can put your files in a docker volume mount that volume with multiple containers and get shared access to that volume. 
 
-Sudo docker volume create  myvolume 
-
-Sudo docker run –it –name=container1 –mount source=myvolume,destination=/app ubuntu 
-
+sudo docker volume create  myvolume 
+sudo docker run –it –name=container1 –mount source=myvolume,destination=/app ubuntu 
 This will create a volume myvolume and mount this volume to a container called container1 of ubuntu image at a destination /app 
 
-How to mount a volume of host directory to docker container 
+**How to mount a volume of host directory to docker container**
 
 docker run -it  --name container1 –v /home/centos:/datavolume ubuntu 
 
 docker run –it –name <container name> -v <path of the host directory>:/datavolume ubuntu 
 
-How to share the voume from one container to other container. 
+**How to share the voume from one container to other container** 
 
-Docker run –it –volumes-from container1 –name container2 
+docker run –it –volumes-from container1 –name container2 
 
-How to push the images to your account in docker hub. 
-
+**How to push the images to your account in docker hub.** 
 docker login 
-
-Which will ask for username and password. 
-
+username and password should be provided.
 Once login is succeeded proceed with other steps. 
 
-Docker tag <imageid> username/<imagename>:tagname 
+docker tag <imageid> username/<imagename>:tagname 
 
 docker tag ab736043b5ac 76625/dockerfile:firsttry 
 
 docker push <dusername>/imagename 
 
-Docker Network 
+# Docker Network 
 
 Docker network which is used to connect two containers in a network. For Docker containers to communicate with each other and the outside world via the host machine, there has to be a layer of networking involved. Docker supports different types of networks, each fit for certain use cases. 
 
-The Bridge Driver 
+**The Bridge Driver**
 
 This is the default. Whenever you start Docker, a bridge network gets created and all newly started containers will connect automatically to the default bridge network. 
 
-The Overlay Driver 
+**The Overlay Driver** 
 
 The Overlay driver is for multi-host network communication, as with Docker Swarm or Kubernetes. It allows containers across the host to communicate with each other without worrying about the setup. Think of an overlay network as a distributed virtualized network that’s built on top of an existing computer network. 
 
-Host Networking 
+**Host Networking**
 
-f you use the host network driver for a container, that container’s network stack is not isolated from the Docker host. For instance, if you run a container which binds to port 80 and you use host networking, the container’s application will be available on port 80 on the host’s IP address. 
+If you use the host network driver for a container, that container’s network stack is not isolated from the Docker host. For instance, if you run a container which binds to port 80 and you use host networking, the container’s application will be available on port 80 on the host’s IP address. 
 
-Macvlan Network 
+**Macvlan Network** 
 
 Some applications, especially legacy applications or applications which monitor network traffic, expect to be directly connected to the physical network. In this type of situation, you can use the macvlan network driver to assign a MAC address to each container’s virtual network interface, making it appear to be a physical network interface directly connected to the physical network. In this case, you need to designate a physical interface on your Docker host to use for the Macvlan, as well as the subnet and gateway of the Macvlan 
 
-Network commands 
+# Network commands
 
-Docker network ls - This command can be used to list all the networks associated with Docker on the host. 
+1.docker network ls - This command can be used to list all the networks associated with Docker on the host. 
 
-   2. docker network inspect networkname - If you want to see more details on the network associated with Docker, you can use the Docker network inspect command. 
+2.docker network inspect networkname - If you want to see more details on the network associated with Docker, you can use the Docker network inspect command. 
+ sudo docker network inspect bridge 
 
-       sudo docker network inspect bridge 
+3.Creating Your Own New Network- One can create a network in Docker before launching containers. 
+ docker network create –-driver drivername name  
 
-  3.Creating Your Own New Network- One can create a network in Docker before launching containers. 
+4.Attach the new network when launching the container. 
+ sudo docker run –it –network=new_nw ubuntu:latest /bin/bash 
 
-  docker network create –-driver drivername name  
+ docker network create network-name 
+ docker run –net mynet –name server1 –dit ubuntu 
+ docker run –net mynet –name server2 –dit ubuntu 
+ docker inspect server1 | grep IPADRESS 
+ docker inspect server1 | grep IPADRESS 
+ Go inside server1 container docker exec –it server1 bash 
+ Then ping ip address of another container 
 
-  4.Attach the new network when launching the container. 
-
-  sudo docker run –it –network=new_nw ubuntu:latest /bin/bash 
-
-   
-
-Docker network create network-name 
-
-Docker run –net mynet –name server1 –dit ubuntu 
-
-Docker run –net mynet –name server2 –dit ubuntu 
-
-Docker inspect server1 | grep IPADRESS 
-
-Docker inspect server1 | grep IPADRESS 
-
-Go inside server1 container docker exec –it server1 bash 
-
-Then ping ip address of another container 
-
-Container linking 
+# Container linking 
 
 Container Linking allows multiple containers to link with each other. It is a better option than exposing ports. Let’s go step by step and learn how it works. 
 
-Sudo docker jenkins pull 
+sudo docker jenkins pull 
 
 Sudo docker run  --name=jenkinsa –d jenkins 
 
-Docker run –name=reca –link=jenkinsa:alias-src –it ubuntu 
+docker run –name=reca –link=jenkinsa:alias-src –it ubuntu 
 
 Now attach to the receiving container docker attach reca 
 
-Then run env command	 
 
-User-defined bridge networks are best when you need multiple containers to communicate on the same Docker host. 
 
-Host networks are best when the network stack should not be isolated from the Docker host, but you want other aspects of the container to be isolated. 
-
-Overlay networks are best when you need containers running on different Docker hosts to communicate, or when multiple applications work together using swarm services. 
-
-Macvlan networks are best when you are migrating from a VM setup or need your containers to look like physical hosts on your network, each with a unique MAC address. 
-
-Third-party network plugins allow you to integrate Docker with specialized network stacks. 
-
- 
-
-Docker-compose 
+# Docker-compose 
 
 Docker Compose is used to run multiple containers as a single service. 
 
