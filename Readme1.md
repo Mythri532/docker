@@ -21,7 +21,6 @@ Docker containers include the application and all of its dependencies. It shares
 # Installation of docker in centos machine. 
 
      Set up the repository 
-
   1. sudo yum install -y yum-utils 
 
   2. sudo yum-config-manager \ 
@@ -88,10 +87,10 @@ Docker containers include the application and all of its dependencies. It shares
     docker start –a <container-name><br> 
 
 12. To stop the container <br> 
-    docker stop <container-name><br>
+    docker stop <container-name> <br>
 
-13. To restart a container- stops and restart a container<br>  
-    docker stop <container-name><br>
+13. To restart a container- stops and restart a container<br>
+    docker stop <container-name> <br>
 
 14. Shows only the running container. <br> 
     docker ps<br>  
