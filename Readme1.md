@@ -291,13 +291,14 @@ RUN apt-get update <br>
 RUN apt-get install –y nginx<br>
 CMD [“echo”,”Image created”]<br> 
 
-FROM alpine<br>  
+FROM alpine<br>
 RUN apk update <br> 
 RUN apk add wget <br> 
 RUN rm -rf /var/cache/apk/<br>
 WORKDIR /root/ <br> 
 ENTRYPOINT [ "wget"]<br> 
-CMD ["--help"]<br>
+CMD ["--help"]<br> 
+
 
 FROM httpd:2.4<br>
 LABEL AUTHOR=user@example.com<br>
