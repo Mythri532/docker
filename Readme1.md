@@ -288,7 +288,7 @@ Dir − The directory where the Docker File is present.<br>
 FROM ubuntu <br>
 MAINTAINER demousr@gmail.com<br>
 RUN apt-get update <br> 
-RUN apt-get install –y nginx<br>  
+RUN apt-get install –y nginx<br>
 CMD [“echo”,”Image created”]<br> 
 
 FROM alpine<br>  
