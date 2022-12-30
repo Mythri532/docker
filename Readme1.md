@@ -90,7 +90,7 @@ Docker containers include the application and all of its dependencies. It shares
     docker stop <container-name><br>
 
 13. To restart a container- stops and restart a container<br>
-    docker stop <container-name><br>
+    docker stop <container-name> <br>
 
 14. Shows only the running container. <br> 
     docker ps<br>  
