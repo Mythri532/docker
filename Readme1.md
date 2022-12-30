@@ -87,10 +87,10 @@ Docker containers include the application and all of its dependencies. It shares
     docker start –a <container-name><br> 
 
 12. To stop the container <br> 
-    docker stop <container-name> <br>
+    docker stop <container-name><br>
 
 13. To restart a container- stops and restart a container<br>
-    docker stop <container-name> <br>
+    docker stop <container-name><br>
 
 14. Shows only the running container. <br> 
     docker ps<br>  
@@ -109,7 +109,7 @@ Docker containers include the application and all of its dependencies. It shares
     To effectively interact with the container this command is used.<br>
 
 19. docker commit <br>
-    Instead of launching a new container from zero, we can commit the old Docker container to create a new Docker image and use that to start a<br>  new container with the right ports open.<br>
+    Instead of launching a new container from zero, we can commit the old Docker container to create a new Docker image and use that to start a<br> new container with the right ports open.<br>
 
     docker stop <container-name> <br>
     docker commit <container-name> <new-container-name><br> 
@@ -126,11 +126,10 @@ Docker containers include the application and all of its dependencies. It shares
 
     docker run --name test_redis<br> 
 
-22. Interactive mode – Let us to interact with the container from out terminal. -I option attaches a standard input of the bash shell to the<br>container.<br> 
+22. Interactive mode – Let us to interact with the container from out terminal. -I option attaches a standard input of the bash shell to     the<br>container.<br> 
 
 23. Detached mode - -d option which lets the container to run in background.<br> 
-
-    So whenever required we can connect to container using its id and name.<br> 
+    docker run -d <container-name> image-name>
 
 24. docker Build<br>
 
@@ -199,10 +198,10 @@ Docker containers include the application and all of its dependencies. It shares
 39.  docker container rm [options] container-name<br> 
      Removes one or more container. <br>
 
- 40. docker container rm  --force <container–name><br>  
+40.  docker container rm  --force <container–name><br>
      To remove the running container forcefully.<br>
 
-41.  docker diff<br>      
+41.  docker diff<br>
      Inspect changes to files or directories on a container’s fileeystem.<br> 
   
 42.  docker info<br> 
@@ -217,13 +216,13 @@ Docker containers include the application and all of its dependencies. It shares
 45.  docker login<br> 
      Login to a registry . Need to enter docker id and password in order to pull and push from the registry.<br>  
 
-46.  docker top <contid><br>  
+46.  docker top <contid><br>
      List the top processes in container<br>  
 
-47.  docker pause <contid><br>  
+47.  docker pause <contid><br>
      To pause the container and unpause the container.<br>  
 
-48.  Systemctl docker stop<br>  
+48.  Systemctl docker stop<br>
      To stop the docker<br>  
 
 # DOCKERFILE 
