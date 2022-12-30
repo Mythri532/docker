@@ -28,17 +28,17 @@ Architecture is referred in
 
 Set up the repository 
 
-    1.  sudo yum install -y yum-utils 
+  1.  sudo yum install -y yum-utils 
 
-    2. sudo yum-config-manager \ 
+  2. sudo yum-config-manager \ 
     --add-repo \ 
     https://download.docker.com/linux/centos/docker-ce.repo 
 
-    3. sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin 
+  3. sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin 
 
-    4. sudo systemctl start docker 
+  4. sudo systemctl start docker 
 
-    5. sudo docker run hello-world 
+  5. sudo docker run hello-world 
    
 
 **Docker commands:**
@@ -46,7 +46,7 @@ Set up the repository
 1.To start docker 
   systemctl start docker  
 
-2.To pull image from repository 
+2.To pull image from repository - 
   docker pull centos 
   docker pull ubuntu 
 
@@ -70,7 +70,7 @@ Set up the repository
   docker create --name mycontainer <imagename> 
   docker create --name mycontainer <imageid> 
 
-8. To run a container in attached mode(foreground) and in detached mode (background) 
+8.To run a container in attached mode(foreground) and in detached mode (background) 
 
    By default, Docker runs the container in attached mode. Meaning it’s attached to the terminal session, where it displays output and messages. 
 
@@ -81,54 +81,41 @@ if you want to keep the container and current terminal session separate, you can
  9.To run a container interactively 
 
 This allows you to execute the commands inside the container 
-
-   docker container run -it [docker_image] /bin/bash  
+  docker container run -it [docker_image] /bin/bash  
 
 10.Run a container and publisher container port 
 
 When you run a container, the only way to access the process is from inside of it. To allow external connections to the container, you have to open (publish) specific ports. 
+  -p [host_ip]:[host_port]:[container_port] 
+   docker container run -p 8080:80 [docker_image] 
 
-   -p [host_ip]:[host_port]:[container_port] 
-    
-    docker container run -p 8080:80 [docker_image] 
-
-11. To start the container 
-
-    docker start [OPTIONS] CONTAINER [CONTAINER...] 
-
-    docker start –a <container-name> 
+11.To start the container 
+   docker start [OPTIONS] CONTAINER [CONTAINER...] 
+   docker start –a <container-name> 
 
 12.To stop the container 
+   docker stop <container-name> 
 
-    docker stop <container-name> 
+13.To restart a container- stops and restart a container 
+   docker stop <container-name> 
 
-13. To restart a container- stops and restart a container 
+14.Shows only the running container. 
+   docker ps  
 
-    docker stop <container-name> 
-
-14. Shows only the running container. 
-
-    docker ps  
-
-15. docker ps –a ->shows all stopped and running containers. 
+15.docker ps –a ->shows all stopped and running containers. 
 
 16.container creation 
+   docker container create –it –name <container-name> <image-name> 
 
-    docker container create –it –name <container-name> <image-name> 
-
-17. The exec command runs a new command in a running container. 
-
-    docker exec <container-name>  <command name> 
-
-    docker exec <container-name>  ls 
+17.The exec command runs a new command in a running container. 
+   docker exec <container-name>  <command name> 
+   docker exec <container-name>  ls 
 
 18. Docker exec command which is used to run the command inside a container or to go inside a container. 
-
-    docker exec –it test /bin/bash 
-
+   docker exec –it test /bin/bash 
    To effectively interact with the container this command is used. 
 
-19.docker commit 
+19. docker commit 
    Instead of launching a new container from zero, we can commit the old Docker container to create a new Docker image and use that to start a new container with the right ports open. 
 
    docker stop <container-name> 
@@ -137,17 +124,15 @@ When you run a container, the only way to access the process is from inside of i
    docker container rm –force <containername> 
    docker run -d --name httpd-container httpd 
 
-20.  Attach command connects our terminal to running container  
+20. Attach command connects our terminal to running container  
 
-    docker container attach [options] container 
+   docker container attach [options] container 
 
 21.Default mode - The above command links the standard output (stdout), and the standard error (stderr) streams with our terminal. So, we can see the console output of the container in our terminal. 
 
-    docker run --name test_redis 
+   docker run --name test_redis 
 
 22. Interactive mode – Let us to interact with the container from out terminal. -I option attaches a standard input of the bash shell to the container. 
-
- 
 
 23.Detached mode - -d option which lets the container to run in background. 
 
@@ -155,181 +140,149 @@ When you run a container, the only way to access the process is from inside of i
 
 24.Docker Build 
 
-     This command which is used to build a docker image from a docker file.The build context is set of files specified in the path or url.  
+  This command which is used to build a docker image from a docker file.The build context is set of files specified in the path or url.  
 
 Url parameter – which can be git repositories,tar ball contexts,text files. 
 
    docker build dockerfile 
 
-25. docker container rm --force mycontainer1 
+25.docker container rm --force mycontainer1 
 
-    To delete the running container forcefully. 
+   To delete the running container forcefully. 
 
  26.docker container cp 
 
-              This command copies file from container to host machine or from host machine to container . 
+   This command copies file from container to host machine or from host machine to container . 
 
-          docker container cp   <containerid>:/src path   /destination path 
+  docker container cp   <containerid>:/src path   /destination path 
+  docker container cp /srcpath  containerid:/destination path. 
 
-           docker container cp /srcpath  containerid:/destination path. 
+27.docker container create image-name. 
+   This command which creates the container and but does not start it. 
+   docker containr create nginx 
 
-27. docker container create image-name. 
+28.docker logs <cont-d> 
+  To show the logs of the container. 
 
-     This command which creates the container and but does not start it. 
+29.docker inspect <cont-id> 
+  To check the state of the container. 
 
-           Docker containr create nginx 
+30.docker checkpoint 
+   checkpoint and Restore is an experimental feature that allows you to freeze a running      container by checkpointing it, which turns its state into a collection of files on disk. Later, the  container can be restored from the point it was frozen. 
+   Usage:  docker checkpoint create [OPTIONS] CONTAINER CHECKPOINT 
 
-28. Docker logs <cont-d> 
-
-         To show the logs of the container. 
-
-29.Docker inspect <cont-id> 
-
-         To check the state of the container. 
-
-30 .Docker checkpoint 
-
-    checkpoint and Restore is an experimental feature that allows you to freeze a running      container by checkpointing it, which turns its state into a collection of files on disk. Later, the  container can be restored from the point it was frozen. 
-
-     Usage:  docker checkpoint create [OPTIONS] CONTAINER CHECKPOINT 
-
-     Create a checkpoint from a running container 
-
-      --leave-running=false - Leave the container running after checkpoint 
-
-     --checkpoint-dir  - Use a custom checkpoint storage directory. 
-
-           Inspect changes to files or directories on a container’s filesystem 
+  Create a checkpoint from a running container 
+  --leave-running=false - Leave the container running after checkpoint 
+  --checkpoint-dir  - Use a custom checkpoint storage directory. 
+  Inspect changes to files or directories on a container’s filesystem 
 
 31.docker container export –o <gzfilename> <containername> 
+  This command is used to export the container in gz file. 
 
-      This command is used to export the container in gz file. 
+32.docker container inspect <container name> 
+  docker inspect command which provides detailed info about container 
 
-32.  docker container inspect <container name> 
+33.docker container logs [options] container-name 
+   Fetches the container logs  
+   docker container ls [options] 
+   docker container ls -a  
+   Lists the running container by default and lists all container  
 
-           Docker inspect command which provides detailed info about container 
+34.docker container pause <container-name> 
+   Pause all processes or container with one or more processes. 
 
-33.Docker container logs [options] container-name 
+35.docker container port <container-name> private_port [/proto] 
+   List port mappings for a container. 
 
-          Fetches the container logs  
-
-    Docker container ls [options] 
-
-               Docker container ls -a  
-
-              Lists the running container by default and lists all container  
-
-34.Docker container pause <container-name> 
-
-     Pause all processes or container with one or more processes. 
-
-35. Docker container port <container-name> private_port [/proto] 
-
-            List port mappings for a container. 
-
-36. docker container prune 
-
-              Removes stopped container 
+36.docker container prune 
+   Removes stopped container 
 
 37.docker  container rename <container-name> <new-name>. 
+   Renames a container name 
 
-                 Renames a container name 
+38.docker container restart  <container –name> 
+   Restart one or more container. 
 
-38.Docker container restart  <container –name> 
-
-             Restart one or more container. 
-
-39. docker container rm [options] container-name 
-
-              Removes one or more container . 
+39.docker container rm [options] container-name 
+   Removes one or more container . 
 
  40.docker container rm  --force <container –name >  
+   To remove the running container forcefully. 
 
-               To remove the running container forcefully. 
+.41.docker diff      
+   Inspect changes to files or directories on a container’s fileeystem. 
 
-.41. docker diff      
+42.docker info 
+   This command displays system wide information regarding the Docker installation. 
 
-      Inspect changes to files or directories on a container’s fileeystem. 
+43.docker kill <container1> <con2> … 
+   Kills one or more container. 
 
-42. Docker info 
+44.docker load --input fedora.tar 
+   Load an image from a tar archive or STDIN    
 
-    This command displays system wide information regarding the Docker installation. 
+45.docker login 
+   Login to a registry . Need to enter docker id and password in order to pull and push from the registry. 
 
-43. Docker kill <container1> <con2> … 
+46.docker top <contid> 
+   List the top processes in container 
 
-      Kills one or more container. 
+47.docker pause <contid> 
+   To pause the container and unpause the container. 
 
-44. docker load --input fedora.tar 
+48.Systemctl docker stop 
+   To stop the docker 
 
-      Load an image from a tar archive or STDIN    
-
-45. Docker login 
-
-      Login to a registry . Need to enter docker id and password in order to pull and push from the registry. 
-
-46. Docker top <contid> 
-
-      List the top processes in container 
-
-47. Docker pause <contid> 
-
-      To pause the container and unpause the container. 
-
-48. Systemctl docker stop 
-
-      To stop the docker 
-
---------------------------------------------------------------------------------------------------------------- 
-
- 
-
-DOCKERFILE 
+#DOCKERFILE 
 
 Docker file is a file which consists set of instruction to create a docker image. 
 
 Docker file instruction command 
 
-FROM – specifies an image to start from 
+**FROM** – It tells docker from which base image you want to base your image from 
+**WORKDIR** – sets the current working directory inside the container equivalent to running cd. 
+**RUN** – executes the given command inside the container. 
+**COPY**- copies the file or directory from local host machine to container file system 
+**CMD**- specifies a command to execute when the image is run. CMD is the command the container executes by default when you launch the built image. 
+**MAINTAINER**- command is the person who is going to maintain this image. Here you specify the  keyword and just mention the email ID.
+**ENTRYPOINT** - The ENTRYPOINT instruction works very similarly to CMD in that it is used to specify the command executed when the container is started. However, where it differs is that ENTRYPOINT doesn't allow you to override the command.
+**ADD** - The ADD instruction copies new files, directories or remote file URLs from source and adds them to the filesystem of the image at the path destination..
+**User** - The USER instruction sets the user name (or UID) and optionally the user group (or GID) to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.
+**Onbuild** - The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time, when the image is used as the base for another build. The trigger will be executed in the context of the downstream build, as if it had been inserted immediately after the FROM instruction in the downstream Dockerfile.
+**Label** -The LABEL Dockerfile instruction adds metadata to an image. A LABEL is a key-value pair. To include spaces within a LABELvalue, use quotes and backslashes as you would in command-line parsing.
+Example - LABEL "com.example.vendor"="ACME Incorporated"
+**ARG** - The ARG instruction defines a variable that users can pass at build-time to the builder with the docker buildcommand using the --build-arg varname=value flag. A Dockerfile may include one or more ARG instructions. 
+SHELL ["executable", "parameters"]
+**Shell** - The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux is ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.
+**Healthcheck** - The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working. This can detect cases such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still running.
+**Expose** - The EXPOSE instruction tells Docker that the container listens on the specified network ports at runtime. To actually publish the port when running the container, use the -p flag on docker run to publish and map one or more ports, or the -P flag to publish all exposed ports and map them to high-order ports.
+**ENV** - The ENV instruction sets the environment variable key to the value value.
+**Volume** - The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from native host or other containers. The value can be a JSON array, VOLUME "/var/log/", or a plain string with multiple arguments, such as VOLUME /var/log or VOLUME /var/log /var/db.
 
-WORKDIR – sets the current working directory inside the container equivalent to running cd. 
-
-RUN – executes the given command inside the container. 
-
-COPY- copies the file or directory from local host machine to container file system 
-
-CMD- specifies a command to execute when the image is run. CMD is the command the container executes by default when you launch the built image. 
-
-Once the dockerfile is ready we can execute docker build command to build an image from docker file. 
-
-MAINTAINER- command is the person who is going to maintain this image. Here you specify the  keyword and just mention the email ID. 
+Once the dockerfile is ready we can execute docker build command to build an image from docker file.
 
 docker build –t image-name:tagname <dir> or docker build –t dockerfile . 
 
--t − is to mention a tag to the image 
+**-t** − is to mention a tag to the image 
+**ImageName** − This is the name you want to give to your image. 
+**TagName** − This is the tag you want to give to your image. 
+**Dir** − The directory where the Docker File is present.
 
-ImageName − This is the name you want to give to your image. 
+**Examples**
 
-TagName − This is the tag you want to give to your image. 
-
-Dir − The directory where the Docker File is present. 
+FROM ubuntu 
+MAINTAINER demousr@gmail.com 
+RUN apt-get update 
+RUN apt-get install –y nginx 
+CMD [“echo”,”Image created”] 
 
 FROM alpine 
-
 RUN apk update 
-
 RUN apk add wget 
-
 RUN rm -rf /var/cache/apk/* 
-
 WORKDIR /root/ 
-
 ENTRYPOINT [ "wget"] 
-
 CMD ["--help"] 
-
- 
-
- 
 
 From the built image docker container can be created . 
 
