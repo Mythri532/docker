@@ -73,30 +73,30 @@ Set up the repository
 
    By default, Docker runs the container in attached mode. Meaning it’s attached to the terminal session, where it displays output and messages.<br>
 
-if you want to keep the container and current terminal session separate, you can run the container in the background using the -d attribute<br> 
+   if you want to keep the container and current terminal session separate, you can run the container in the background using the -d attribute<br>
 
    docker container run -d [docker_image]<br>
 
 9. To run a container interactively<br>
 
    This allows you to execute the commands inside the container<br>
-    docker container run -it [docker_image] /bin/bash<br>  
+   docker container run -it [docker_image] /bin/bash<br>  
 
 10. Run a container and publisher container port <br> 
 
-When you run a container, the only way to access the process is from inside of it. To allow external connections to the container, you have to open (publish) specific ports.<br> 
+   When you run a container, the only way to access the process is from inside of it. To allow external connections to the container, you have<br> to open (publish) specific ports.<br> 
    -p [host_ip]:[host_port]:[container_port]<br>
-    docker container run -p 8080:80 [docker_image]<br>
+   docker container run -p 8080:80 [docker_image]<br>
 
 11. To start the container <br> 
-    docker start [OPTIONS] CONTAINER [CONTAINER...]<br> 
-    docker start –a <container-name><br> 
+   docker start [OPTIONS] CONTAINER [CONTAINER...]<br> 
+   docker start –a <container-name><br> 
 
 12. To stop the container <br> 
-    docker stop <container-name><br>
+   docker stop <container-name><br>
 
 13. To restart a container- stops and restart a container<br>  
-    docker stop <container-name><br>
+   docker stop <container-name><br>
 
 14. Shows only the running container. <br> 
     docker ps<br>  
