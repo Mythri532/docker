@@ -84,19 +84,19 @@ Set up the repository
 
 10. Run a container and publisher container port <br> 
 
-   When you run a container, the only way to access the process is from inside of it. To allow external connections to the container, you have<br> to open (publish) specific ports.<br> 
-   -p [host_ip]:[host_port]:[container_port]<br>
-   docker container run -p 8080:80 [docker_image]<br>
+    When you run a container, the only way to access the process is from inside of it. To allow external connections to the container, you    have<br> to open (publish) specific ports.<br> 
+    -p [host_ip]:[host_port]:[container_port]<br>
+    docker container run -p 8080:80 [docker_image]<br>
 
 11. To start the container <br> 
-   docker start [OPTIONS] CONTAINER [CONTAINER...]<br> 
-   docker start –a <container-name><br> 
+    docker start [OPTIONS] CONTAINER [CONTAINER...]<br> 
+    docker start –a <container-name><br> 
 
 12. To stop the container <br> 
-   docker stop <container-name><br>
+    docker stop <container-name><br>
 
 13. To restart a container- stops and restart a container<br>  
-   docker stop <container-name><br>
+    docker stop <container-name><br>
 
 14. Shows only the running container. <br> 
     docker ps<br>  
@@ -137,7 +137,7 @@ Set up the repository
 
     So whenever required we can connect to container using its id and name.<br> 
 
-24. Docker Build<br>
+24. docker Build<br>
 
     This command which is used to build a docker image from a docker file.The build context is set of files specified in the path or url.<br>  
     Url parameter – which can be git repositories,tar ball contexts,text files.<br> 
@@ -149,85 +149,85 @@ Set up the repository
 
  26. docker container cp<br>
     This command copies file from container to host machine or from host machine to container.<br> 
-    docker container cp   <containerid>:/src path   /destination path<br> 
-    docker container cp /srcpath  containerid:/destination path.<br>
+     docker container cp   <containerid>:/src path   /destination path<br> 
+     docker container cp /srcpath  containerid:/destination path.<br>
 
-27. docker container create image-name.<br>
+27.  docker container create image-name.<br>
     This command which creates the container and but does not start it.<br> 
-    docker containr create nginx<br>
+     docker containr create nginx<br>
 
-28. docker logs <cont-d><br>
-    To show the logs of the container.<br> 
+28.  docker logs <cont-d><br>
+     To show the logs of the container.<br> 
 
-29. docker inspect <cont-id><br> 
-    To check the state of the container.<br> 
+29.  docker inspect <cont-id><br> 
+     To check the state of the container.<br> 
 
-30. docker checkpoint<br> 
-    checkpoint and Restore is an experimental feature that allows you to freeze a running container by checkpointing it<br>
-    which turns its state into a collection of files on disk. Later, the  container can be restored from the point it was frozen.<br> 
-    Usage:  docker checkpoint create [OPTIONS] CONTAINER CHECKPOINT<br>
+30.  docker checkpoint<br> 
+     checkpoint and Restore is an experimental feature that allows you to freeze a running container by checkpointing it<br>
+     which turns its state into a collection of files on disk. Later, the  container can be restored from the point it was frozen.<br> 
+     Usage:  docker checkpoint create [OPTIONS] CONTAINER CHECKPOINT<br>
 
-    Create a checkpoint from a running container<br>
-    --leave-running=false - Leave the container running after checkpoint<br> 
-    --checkpoint-dir  - Use a custom checkpoint storage directory.<br>
-    Inspect changes to files or directories on a container’s filesystem<br>
+     Create a checkpoint from a running container<br>
+     --leave-running=false - Leave the container running after checkpoint<br> 
+     --checkpoint-dir  - Use a custom checkpoint storage directory.<br>
+     Inspect changes to files or directories on a container’s filesystem<br>
 
-31. docker container export –o <gzfilename> <containername><br>
-    This command is used to export the container in gz file.<br>
+31.  docker container export –o <gzfilename> <containername><br>
+     This command is used to export the container in gz file.<br>
 
-32. docker container inspect <container name> <br>
-    docker inspect command which provides detailed info about container<br> 
+32.  docker container inspect <container name> <br>
+     docker inspect command which provides detailed info about container<br> 
 
-33. docker container logs [options] container-name<br> 
-    Fetches the container logs  
-    docker container ls [options] <br>
-    docker container ls -a <br> 
-    Lists the running container by default and lists all container <br>  
+33.  docker container logs [options] container-name<br> 
+     Fetches the container logs  
+     docker container ls [options] <br>
+     docker container ls -a <br> 
+     Lists the running container by default and lists all container <br>  
 
-34. docker container pause <container-name> <br>
-    Pause all processes or container with one or more processes.<br> 
+34.  docker container pause <container-name> <br>
+     Pause all processes or container with one or more processes.<br> 
 
-35. docker container port <container-name> private_port [/proto]<br>
-    List port mappings for a container.<br>
+35.  docker container port <container-name> private_port [/proto]<br>
+     List port mappings for a container.<br>
 
-36. docker container prune <br>
-    Removes stopped container <br>
+36.  docker container prune <br>
+     Removes stopped container <br>
 
-37. docker  container rename <container-name> <new-name>.<br> 
-    Renames a container name <br>
+37.  docker  container rename <container-name> <new-name>.<br> 
+     Renames a container name <br>
 
-38. docker container restart  <container –name> <br>
-    Restart one or more container. <br>
+38.  docker container restart  <container –name> <br>
+     Restart one or more container. <br>
 
-39. docker container rm [options] container-name<br> 
-    Removes one or more container. <br>
+39.  docker container rm [options] container-name<br> 
+     Removes one or more container. <br>
 
  40. docker container rm  --force <container–name><br>  
      To remove the running container forcefully.<br>
 
-41. docker diff<br>      
-    Inspect changes to files or directories on a container’s fileeystem.<br> 
+41.  docker diff<br>      
+     Inspect changes to files or directories on a container’s fileeystem.<br> 
   
-42. docker info<br> 
-    This command displays system wide information regarding the Docker installation.<br>  
+42.  docker info<br> 
+     This command displays system wide information regarding the Docker installation.<br>  
 
-43. docker kill <container1> <con2> …<br> 
-    Kills one or more container.<br> 
+43.  docker kill <container1> <con2> …<br> 
+     Kills one or more container.<br> 
 
-44. docker load --input fedora.tar<br> 
-    Load an image from a tar archive or STDIN<br>    
+44.  docker load --input fedora.tar<br> 
+     Load an image from a tar archive or STDIN<br>    
 
-45. docker login<br> 
-    Login to a registry . Need to enter docker id and password in order to pull and push from the registry.<br>  
+45.  docker login<br> 
+     Login to a registry . Need to enter docker id and password in order to pull and push from the registry.<br>  
 
-46. docker top <contid><br>  
-    List the top processes in container<br>  
+46.  docker top <contid><br>  
+     List the top processes in container<br>  
 
-47. docker pause <contid><br>  
-    To pause the container and unpause the container.<br>  
+47.  docker pause <contid><br>  
+     To pause the container and unpause the container.<br>  
 
-48. Systemctl docker stop<br>  
-    To stop the docker<br>  
+48.  Systemctl docker stop<br>  
+     To stop the docker<br>  
 
 # DOCKERFILE 
 
@@ -235,27 +235,39 @@ Docker file is a file which consists set of instruction to create a docker image
 
 Docker file instruction command<br>  
 
-**FROM** – It tells docker from which base image you want to base your image from.<br> 
-**WORKDIR** – sets the current working directory inside the container equivalent to running cd.<br>  
-**RUN** – executes the given command inside the container.<br>  
-**COPY**- copies the file or directory from local host machine to container file system<br>  
-**CMD**- specifies a command to execute when the image is run. CMD is the command the container executes by default when you launch the built image.<br> 
+**FROM** – It tells docker from which base image you want to base your image from.<br>
+
+**WORKDIR** – sets the current working directory inside the container equivalent to running cd.<br>
+
+**RUN** – executes the given command inside the container.<br>
+
+**COPY**- copies the file or directory from local host machine to container file system<br>
+
+**CMD**- specifies a command to execute when the image is run. CMD is the command the container executes by default when you launch the built<br> image.<br> 
+
 **MAINTAINER**- command is the person who is going to maintain this image. Here you specify the  keyword and just mention the email ID.<br> 
 **ENTRYPOINT** - The ENTRYPOINT instruction works very similarly to CMD in that it is used to specify the command executed.<br> 
- when the container is started. However, where it differs is that ENTRYPOINT doesn't allow you to override the command.<br> 
+  when the container is started. However, where it differs is that ENTRYPOINT doesn't allow you to override the command.<br> 
+
 **ADD** - The ADD instruction copies new files, directories or remote file URLs from source and adds them to the filesystem of the imag<br> 
  at the  path destination.<br> 
+
 **User** - The USER instruction sets the user name (or UID) and optionally the user group (or GID) to use when running the image and for any RUN, CMD and ENTRYPOINT instructions that follow it in the Dockerfile.<br> 
+
 **Onbuild** - The ONBUILD instruction adds to the image a trigger instruction to be executed at a later time,<br>  
 when the image is used as the base for another build. The trigger will be executed in the context of the downstream build, <br> 
 as if it had been inserted immediately after the FROM instruction in the downstream Dockerfile.<br> 
+
 **Label** -The LABEL Dockerfile instruction adds metadata to an image. A LABEL is a key-value pair. To include spaces within a LABELvalue, use<br>  quotes and backslashes as you would in command-line parsing.<br> 
 Example - LABEL "com.example.vendor"="ACME Incorporated"<br> 
+
 **ARG** - The ARG instruction defines a variable that users can pass at build-time to the builder with the docker buildcommand using the <br> --build-arg varname=value flag. A Dockerfile may include one or more ARG instructions.<br> 
 SHELL ["executable", "parameters"]<br> 
-**Shell** - The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux is<br> ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.<br> 
-**Healthcheck** - The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working. This can detect cases<br>  such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still running.<br> 
-**Expose** - The EXPOSE instruction tells Docker that the container listens on the specified network ports at runtime. To actually publish the<br>  port when running the container, use the -p flag on docker run to publish and map one or more ports, or the -P flag to publish all<br>  exposed ports and map them to high-order ports.<br> 
+
+**Shell** - The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux<br> is<br> ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.<br>
+
+**Healthcheck** - The HEALTHCHECK instruction tells Docker how to test a container to check that it is still working. This can detect<br> cases<br>  such as a web server that is stuck in an infinite loop and unable to handle new connections, even though the server process is still<br> running.<br> 
+**Expose** - The EXPOSE instruction tells Docker that the container listens on the specified network ports at runtime. To actually publish the<br> port when running the container, use the -p flag on docker run to publish and map one or more ports, or the -P flag to publish all<br>  exposed ports and map them to high-order ports.<br> 
 **ENV** - The ENV instruction sets the environment variable key to the value value.<br> 
 **Volume** - The VOLUME instruction creates a mount point with the specified name and marks it as holding externally mounted volumes from <br> native host or other containers. The value can be a JSON array, VOLUME "/var/log/", or a plain string with multiple arguments,<br>  
 such as VOLUME /var/log or VOLUME /var/log /var/db.<br> 
@@ -285,19 +297,19 @@ WORKDIR /root/ <br>
 ENTRYPOINT [ "wget"] 
 CMD ["--help"]
 
-FROM httpd:2.4
-LABEL AUTHOR=user@example.com
-LABEL VERSION=0.1
-COPY mypage.html /usr/local/apache2/htdocs/mypage.html
-WORKDIR /usr/local/apache2
-COPY mypage.html htdocs/mypage.html
+FROM httpd:2.4<br>
+LABEL AUTHOR=user@example.com<br>
+LABEL VERSION=0.1<br>
+COPY mypage.html /usr/local/apache2/htdocs/mypage.html<br>
+WORKDIR /usr/local/apache2<br>
+COPY mypage.html htdocs/mypage.html<br>
 
-FROM ubuntu 
-RUN apt-get update 
-RUN apt-get install –y apache2 
-RUN apt-get install –y apache2-utils 
-RUN apt-get clean 
-EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+FROM ubuntu<br>
+RUN apt-get update<br>
+RUN apt-get install –y apache2<br> 
+RUN apt-get install –y apache2-utils<br> 
+RUN apt-get clean<br> 
+EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]<br>
 
 # Dockerize an java application
  
@@ -313,159 +325,158 @@ public class Sample {<br>
 
 3.Add the below lines in dockerfile.<br>
 
-FROM openjdk:11
-COPY . /var/www/java
-WORKDIR /var/www/java
-RUN  javac Sample.java
-RUN useradd nonroot
-USER nonroot
-CMD ["java","Sample"]
+FROM openjdk:11<br>
+COPY . /var/www/java<br>
+WORKDIR /var/www/java<br>
+RUN  javac Sample.java<br>
+CMD ["java","Sample"]<br>
 
-From the built image docker container can be created . 
+From the built image docker container can be created.<br> 
 
 # Docker volumes. 
 
-Docker volumes which is used to persist data backup.To define Docker Volumes, they are file systems that can be mounted on Docker containers. 
-They help in preserving the data and are independent of the container life cycle. One of the major advantages of Docker Volumes is that it allows the developers to backup their data and also allows easy sharing of file systems among Docker containers.  
+Docker volumes which is used to persist data backup.To define Docker Volumes, they are file systems that can be mounted on Docker containers.<br> 
+They help in preserving the data and are independent of the container life cycle. One of the major advantages of Docker Volumes is that it<br> allows the developers to backup their data and also allows easy sharing of file systems among Docker containers.<br>  
 
-It is also possible to mount the same volume to different containers and this allows easy sharing of data between them and this can be easily achieved with the use of simple commands and flags. 
+It is also possible to mount the same volume to different containers and this allows easy sharing of data between them and this can be easily<br> achieved with the use of simple commands and flags.<br>
 
 # Creation of docker Volume 
 
-sudo docker volume create <volume-name> 
+sudo docker volume create <volume-name> <br>
 
-Docker creates a particular directory for volume on the local machine 
+Docker creates a particular directory for volume on the local machine<br> 
 
-List all the docker volumes. 
-sudo docker volume list 
+List all the docker volumes.<br>
+sudo docker volume list<br>
 
-Inspecting a docker volume 
+Inspecting a docker volume <br>
 
-sudo docker volume inspect <volume-name> 
+sudo docker volume inspect <volume-name><br> 
 
-Mounting docker volumes. 
+Mounting docker volumes. <br>
 
-sudo docker run −−mount source=<name of volume>,destination=<path of a directory in container>/volumename <image_name> 
+sudo docker run −−mount source=<name of volume>,destination=<path of a directory in container>/volumename <image_name><br> 
 
-For example
-sudo docker run −it −−mount source=myVolume,destination=/usr/src/app/myvolume ubuntu 
+For example<br>
+sudo docker run −it −−mount source=myVolume,destination=/usr/src/app/myvolume ubuntu <br>
 
-In order check the volume for stopped container. You need to start the container and need to execute docker exec –it <container-name> /bin/bash command. 
-You can mount a docker volume to a docker container using the mount –flag. when you are running the Docker run command. You can also mount the same volume to multiple Docker containers and all the containers would have a shared access to the volume.   
+In order check the volume for stopped container. You need to start the container and need to execute docker exec –it <container-name> /bin/bash command.<br> 
+You can mount a docker volume to a docker container using the mount –flag. when you are running the Docker run command. You can also mount the<br> same volume to multiple Docker containers and all the containers would have a shared access to the volume.<br>  
 
 **Deleting a docker volume** 
  
- In order to delete a docker volume, you need to ensure that the volume is not in use at that moment. If a container is running with the volume mounted in it, you would have to stop the container first before removing the mounted volume. After you have stopped the container, you can use the following command to remove the volume. 
+ In order to delete a docker volume, you need to ensure that the volume is not in use at that moment. If a container is running with the volume<br> mounted in it, you would have to stop the container first before removing the mounted volume. After you have stopped the container,<br> you can use the following command to remove the volume.<br> 
 
-sudo docker rm <name of volume> 
+sudo docker rm <name of volume><br> 
 
-In order to delete all the volumes at once, make sure that none of the volumes is currently in use  
+In order to delete all the volumes at once, make sure that none of the volumes is currently in use<br>  
 
-sudo docker volume prune. 
+sudo docker volume prune.<br>
 
-Sharing a Docker Volume with multiple Docker Containers 
-If you want to share multiple files with multiple docker container ,you can put your files in a docker volume mount that volume with multiple containers and get shared access to that volume. 
+Sharing a Docker Volume with multiple Docker Containers <br>
+If you want to share multiple files with multiple docker container ,you can put your files in a docker volume mount that volume with multiple<br> containers and get shared access to that volume.<br>
 
-sudo docker volume create  myvolume 
-sudo docker run –it –name=container1 –mount source=myvolume,destination=/app ubuntu 
-This will create a volume myvolume and mount this volume to a container called container1 of ubuntu image at a destination /app 
+sudo docker volume create  myvolume <br>
+sudo docker run –it –name=container1 –mount source=myvolume,destination=/app ubuntu<br> 
+This will create a volume myvolume and mount this volume to a container called container1 of ubuntu image at a destination /app<br> 
 
 **How to mount a volume of host directory to docker container**
 
-docker run -it  --name container1 –v /home/centos:/datavolume ubuntu 
+docker run -it  --name container1 –v /home/centos:/datavolume ubuntu<br> 
 
-docker run –it –name <container name> -v <path of the host directory>:/datavolume ubuntu 
+docker run –it –name <container name> -v <path of the host directory>:/datavolume ubuntu<br>
 
 **How to share the voume from one container to other container** 
 
-docker run –it –volumes-from container1 –name container2 
+docker run –it –volumes-from container1 –name container2<br>
 
 **How to push the images to your account in docker hub.** 
-docker login 
-username and password should be provided.
-Once login is succeeded proceed with other steps. 
+docker login <br>
+username and password should be provided.<br>
+Once login is succeeded proceed with other steps.<br> 
 
-docker tag <imageid> username/<imagename>:tagname 
+docker tag <imageid> username/<imagename>:tagname<br>
 
-docker tag ab736043b5ac 76625/dockerfile:firsttry 
+docker tag ab736043b5ac 76625/dockerfile:firsttry<br>
 
-docker push <dusername>/imagename 
+docker push <dusername>/imagename<br>
 
 # Docker Network 
 
-Docker network which is used to connect two containers in a network. For Docker containers to communicate with each other and the outside world via the host machine, there has to be a layer of networking involved. Docker supports different types of networks, each fit for certain use cases. 
+Docker network which is used to connect two containers in a network. For Docker containers to communicate with each other and the outside world<br> via the host machine, there has to be a layer of networking involved. Docker supports different types of networks, each fit for<br>certain use cases.<br>
 
 **The Bridge Driver**
 
-This is the default. Whenever you start Docker, a bridge network gets created and all newly started containers will connect automatically to the default bridge network. 
+This is the default. Whenever you start Docker, a bridge network gets created and all newly started containers will connect automatically to<br> the default bridge network.<br> 
 
 **The Overlay Driver** 
 
-The Overlay driver is for multi-host network communication, as with Docker Swarm or Kubernetes. It allows containers across the host to communicate with each other without worrying about the setup. Think of an overlay network as a distributed virtualized network that’s built on top of an existing computer network. 
+The Overlay driver is for multi-host network communication, as with Docker Swarm or Kubernetes. It allows containers across the host to<br> communicate with each other without worrying about the setup. Think of an overlay network as a distributed virtualized network that’s built on<br> top of an existing computer network.<br>
 
 **Host Networking**
 
-If you use the host network driver for a container, that container’s network stack is not isolated from the Docker host. For instance, if you run a container which binds to port 80 and you use host networking, the container’s application will be available on port 80 on the host’s IP address. 
+If you use the host network driver for a container, that container’s network stack is not isolated from the Docker host. For instance, if you<br> run a container which binds to port 80 and you use host networking, the container’s application will be available on port 80 on the<br> host’s IP address.<br>
 
 **Macvlan Network** 
 
-Some applications, especially legacy applications or applications which monitor network traffic, expect to be directly connected to the physical network. In this type of situation, you can use the macvlan network driver to assign a MAC address to each container’s virtual network interface, making it appear to be a physical network interface directly connected to the physical network. In this case, you need to designate a physical interface on your Docker host to use for the Macvlan, as well as the subnet and gateway of the Macvlan 
+Some applications, especially legacy applications or applications which monitor network traffic, expect to be directly connected to the<br> physical network. In this type of situation, you can use the macvlan network driver to assign a MAC address to each container’s virtual network<br> interface, making it appear to be a physical network interface directly connected to the physical network. In this case, you need<br> to designate a physical interface on your Docker host to use for the Macvlan, as well as the subnet and gateway of the Macvlan.<br> 
 
 # Network commands
 
-1.docker network ls - This command can be used to list all the networks associated with Docker on the host. 
+1.docker network ls - This command can be used to list all the networks associated with Docker on the host.<br> 
 
-2.docker network inspect networkname - If you want to see more details on the network associated with Docker, you can use the Docker network inspect command. 
- sudo docker network inspect bridge 
+2.docker network inspect networkname - If you want to see more details on the network associated with Docker, you can use the Docker 
+network inspect command.<br>
+ sudo docker network inspect bridge<br> 
 
-3.Creating Your Own New Network- One can create a network in Docker before launching containers. 
- docker network create –-driver drivername name  
+3.Creating Your Own New Network- One can create a network in Docker before launching containers.<br> 
+ docker network create –-driver drivername name<br>  
 
-4.Attach the new network when launching the container. 
- sudo docker run –it –network=new_nw ubuntu:latest /bin/bash 
+4.Attach the new network when launching the container.<br>
+ sudo docker run –it –network=new_nw ubuntu:latest /bin/bash<br> 
 
- docker network create network-name 
- docker run –net mynet –name server1 –dit ubuntu 
- docker run –net mynet –name server2 –dit ubuntu 
- docker inspect server1 | grep IPADRESS 
- docker inspect server1 | grep IPADRESS 
- Go inside server1 container docker exec –it server1 bash 
- Then ping ip address of another container 
+ docker network create network-name<br>
+ docker run –net mynet –name server1 –dit ubuntu<br> 
+ docker run –net mynet –name server2 –dit ubuntu<br>
+ docker inspect server1 | grep IPADRESS<br> 
+ docker inspect server1 | grep IPADRESS<br> 
+ Go inside server1 container docker exec –it server1 bash<br>
+ Then ping ip address of another container<br> 
 
 # Container linking 
 
-Container Linking allows multiple containers to link with each other. It is a better option than exposing ports. Let’s go step by step and learn how it works. 
+Container Linking allows multiple containers to link with each other. It is a better option than exposing ports. Let’s go step by step and<br> learn how it works.<br>
 
-sudo docker jenkins pull 
+sudo docker jenkins pull<br>
 
-Sudo docker run  --name=jenkinsa –d jenkins 
+Sudo docker run  --name=jenkinsa –d jenkins<br> 
 
-docker run –name=reca –link=jenkinsa:alias-src –it ubuntu 
+docker run –name=reca –link=jenkinsa:alias-src –it ubuntu<br>
 
-Now attach to the receiving container docker attach reca 
+Now attach to the receiving container docker attach reca<br> 
 
 
 
 # Docker-compose 
 
-Docker Compose is used to run multiple containers as a single service. 
+Docker Compose is used to run multiple containers as a single service.<br>
 
-For example, suppose you had an application which required NGNIX and MySQL,  
+For example, suppose you had an application which required NGNIX and MySQL,<br>  
 
-you could create one file which would start both the containers as a service without the need to start each one separately. 
+you could create one file which would start both the containers as a service without the need to start each one separately.<br> 
 
-Docker-compose Installation 
+Docker-compose Installation<br> 
 
 Step 1: curl -L "https://github.com/docker/compose/releases/download/1.10.0-rc2/dockercompose 
-   -$(uname -s) -$(uname -m)" -o /home/demo/docker-compose 
+        -$(uname -s) -$(uname -m)" -o /home/demo/docker-compose 
 
 Step 2: Next, we need to provide execute privileges to the downloaded Docker Compose file, using the following command   
 
-chmod +x /home/demo/docker-compose 
+        chmod +x /home/demo/docker-compose 
 
 Step 3: docker-compose version 
 
-Creating the docker-compose file 
+# Creating the docker-compose file 
 
 sudo vi docker-compose.yml 
 
