@@ -42,32 +42,32 @@ Set up the repository
 
 # Docker commands:
 
-1.<p>To start docker<br> 
-  systemctl start docker<br>  
+1. To start docker<br> 
+   systemctl start docker<br>  
 
-2.To pull image from repository<br> 
-  docker pull centos<br>
-  docker pull ubuntu<br>
+2. To pull image from repository<br> 
+   docker pull centos<br>
+   docker pull ubuntu<br>
 
-3.To show all images<br>
-  docker images<br>
+3. To show all images<br>
+   docker images<br>
 
-4.Creates the container named mycontainer from centos image 
-  docker create --name mycontainer centos 
-  creates the container named mycontainer from centos image  
+4. Creates the container named mycontainer from centos image 
+   docker create --name mycontainer centos 
+   creates the container named mycontainer from centos image  
 
-5.To delete docker container 
-  docker rm <containername> 
+5. To delete docker container 
+   docker rm <containername> 
 
-6.To remove image 
-  docker rmi <imagename> 
+6. To remove image 
+   docker rmi <imagename> 
 
-7.To run a container  
-  docker run [OPTIONS] IMAGE [COMMAND] [ARG...] 
-  docker run <image-name> 
-  note: if you use an image that is not in your local else it pull the image from  docker registry. 
-  docker create --name mycontainer <imagename> 
-  docker create --name mycontainer <imageid> 
+7. To run a container  
+   docker run [OPTIONS] IMAGE [COMMAND] [ARG...] 
+   docker run <image-name> 
+   note: if you use an image that is not in your local else it pull the image from  docker registry. 
+   docker create --name mycontainer <imagename> 
+   docker create --name mycontainer <imageid> 
 
 8.To run a container in attached mode(foreground) and in detached mode (background) 
 
