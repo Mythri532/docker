@@ -69,169 +69,165 @@ Set up the repository
    docker create --name mycontainer <imagename><br>
    docker create --name mycontainer <imageid><br> 
 
-8.To run a container in attached mode(foreground) and in detached mode (background)<br>
+8. To run a container in attached mode(foreground) and in detached mode (background)<br>
 
    By default, Docker runs the container in attached mode. Meaning it’s attached to the terminal session, where it displays output and messages.<br>
 
-if you want to keep the container and current terminal session separate, you can run the container in the background using the -d attribute 
+if you want to keep the container and current terminal session separate, you can run the container in the background using the -d attribute<br> 
 
    docker container run -d [docker_image]<br>
 
- 9.To run a container interactively 
+9. To run a container interactively<br>
 
-This allows you to execute the commands inside the container 
-   docker container run -it [docker_image] /bin/bash<br>  
+   This allows you to execute the commands inside the container<br>
+    docker container run -it [docker_image] /bin/bash<br>  
 
-10.Run a container and publisher container port 
+10. Run a container and publisher container port <br> 
 
-When you run a container, the only way to access the process is from inside of it. To allow external connections to the container, you have to open (publish) specific ports. 
-  -p [host_ip]:[host_port]:[container_port]<br>
-   docker container run -p 8080:80 [docker_image]<br>
+When you run a container, the only way to access the process is from inside of it. To allow external connections to the container, you have to open (publish) specific ports.<br> 
+   -p [host_ip]:[host_port]:[container_port]<br>
+    docker container run -p 8080:80 [docker_image]<br>
 
-11.To start the container 
-   docker start [OPTIONS] CONTAINER [CONTAINER...]<br> 
-   docker start –a <container-name><br> 
+11. To start the container <br> 
+    docker start [OPTIONS] CONTAINER [CONTAINER...]<br> 
+    docker start –a <container-name><br> 
 
-12.To stop the container 
-   docker stop <container-name><br>
+12. To stop the container <br> 
+    docker stop <container-name><br>
 
-13.To restart a container- stops and restart a container 
-   docker stop <container-name><br>
+13. To restart a container- stops and restart a container<br>  
+    docker stop <container-name><br>
 
-14.Shows only the running container. 
-   docker ps<br>  
+14. Shows only the running container. <br> 
+    docker ps<br>  
 
-15.docker ps –a ->shows all stopped and running containers.<br> 
+15. docker ps –a ->shows all stopped and running containers.<br> 
 
-16.container creation<br>
-   docker container create –it –name <container-name> <image-name><br> 
+16. container creation<br>
+    docker container create –it –name <container-name> <image-name><br> 
 
-17.The exec command runs a new command in a running container.<br>
-   docker exec <container-name>  <command name> <br>
-   docker exec <container-name>  ls <br>
+17. The exec command runs a new command in a running container.<br>
+    docker exec <container-name>  <command name> <br>
+    docker exec <container-name>  ls <br>
 
 18. Docker exec command which is used to run the command inside a container or to go inside a container.<br> 
-   docker exec –it test /bin/bash <br>
-   To effectively interact with the container this command is used.<br>
+    docker exec –it test /bin/bash <br>
+    To effectively interact with the container this command is used.<br>
 
 19. docker commit <br>
-   Instead of launching a new container from zero, we can commit the old Docker container to create a new Docker image and use that to start a new container with the right ports open.<br>
+    Instead of launching a new container from zero, we can commit the old Docker container to create a new Docker image and use that to start a<br>  new container with the right ports open.<br>
 
-   docker stop <container-name> <br>
-   docker commit <container-name> <new-container-name><br> 
-   docker rm <container-name> <br>
-   docker container rm –force <containername><br>
-   docker run -d --name httpd-container httpd <br>
+    docker stop <container-name> <br>
+    docker commit <container-name> <new-container-name><br> 
+    docker rm <container-name> <br>
+    docker container rm –force <containername><br>
+    docker run -d --name httpd-container httpd <br>
 
-20. Attach command connects our terminal to running container  
+20. Attach command connects our terminal to running container<br>   
 
-   docker container attach [options] container<br>
+    docker container attach [options] container<br>
 
-21.Default mode - The above command links the standard output (stdout), and the standard error (stderr) streams with our terminal. So, we can see the console output of the container in our terminal.<br> 
+21. Default mode - The above command links the standard output (stdout), and the standard error (stderr) streams with our terminal. So, we can see the console output of the container in our terminal.<br> 
 
-   docker run --name test_redis<br> 
+    docker run --name test_redis<br> 
 
 22. Interactive mode – Let us to interact with the container from out terminal. -I option attaches a standard input of the bash shell to the container.<br> 
 
-23.Detached mode - -d option which lets the container to run in background.<br> 
+23. Detached mode - -d option which lets the container to run in background.<br> 
 
-   So whenever required we can connect to container using its id and name.<br> 
+    So whenever required we can connect to container using its id and name.<br> 
 
-24.Docker Build<br>
+24. Docker Build<br>
 
-  This command which is used to build a docker image from a docker file.The build context is set of files specified in the path or url.<br>  
+    This command which is used to build a docker image from a docker file.The build context is set of files specified in the path or url.<br>  
+    Url parameter – which can be git repositories,tar ball contexts,text files.<br> 
 
-Url parameter – which can be git repositories,tar ball contexts,text files.<br> 
+    docker build dockerfile<br>
 
-   docker build dockerfile<br>
+25. docker container rm --force mycontainer1<br> 
+    To delete the running container forcefully.<br> 
 
-25.docker container rm --force mycontainer1<br> 
+ 26. docker container cp<br>
+    This command copies file from container to host machine or from host machine to container.<br> 
+    docker container cp   <containerid>:/src path   /destination path<br> 
+    docker container cp /srcpath  containerid:/destination path.<br>
 
-   To delete the running container forcefully.<br> 
+27. docker container create image-name.<br>
+    This command which creates the container and but does not start it.<br> 
+    docker containr create nginx<br>
 
- 26.docker container cp<br>
+28. docker logs <cont-d><br>
+    To show the logs of the container.<br> 
 
-   This command copies file from container to host machine or from host machine to container.<br> 
+29. docker inspect <cont-id><br> 
+    To check the state of the container.<br> 
 
-  docker container cp   <containerid>:/src path   /destination path<br> 
-  docker container cp /srcpath  containerid:/destination path.<br>
+30. docker checkpoint<br> 
+    checkpoint and Restore is an experimental feature that allows you to freeze a running container by checkpointing it<br>
+    which turns its state into a collection of files on disk. Later, the  container can be restored from the point it was frozen.<br> 
+    Usage:  docker checkpoint create [OPTIONS] CONTAINER CHECKPOINT<br>
 
-27.docker container create image-name.<br>
-   This command which creates the container and but does not start it.<br> 
-   docker containr create nginx<br>
+    Create a checkpoint from a running container<br>
+    --leave-running=false - Leave the container running after checkpoint<br> 
+    --checkpoint-dir  - Use a custom checkpoint storage directory.<br>
+    Inspect changes to files or directories on a container’s filesystem<br>
 
-28.docker logs <cont-d><br>
-  To show the logs of the container.<br> 
+31. docker container export –o <gzfilename> <containername><br>
+    This command is used to export the container in gz file.<br>
 
-29.docker inspect <cont-id><br> 
-  To check the state of the container.<br> 
+32. docker container inspect <container name> <br>
+    docker inspect command which provides detailed info about container<br> 
 
-30.docker checkpoint<br> 
-   checkpoint and Restore is an experimental feature that allows you to freeze a running container by checkpointing it<br>
-   which turns its state into a collection of files on disk. Later, the  container can be restored from the point it was frozen.<br> 
-   Usage:  docker checkpoint create [OPTIONS] CONTAINER CHECKPOINT<br>
+33. docker container logs [options] container-name<br> 
+    Fetches the container logs  
+    docker container ls [options] <br>
+    docker container ls -a <br> 
+    Lists the running container by default and lists all container <br>  
 
-  Create a checkpoint from a running container<br>
-  --leave-running=false - Leave the container running after checkpoint<br> 
-  --checkpoint-dir  - Use a custom checkpoint storage directory.<br>
-  Inspect changes to files or directories on a container’s filesystem<br>
+34. docker container pause <container-name> <br>
+    Pause all processes or container with one or more processes.<br> 
 
-31.docker container export –o <gzfilename> <containername><br>
-  This command is used to export the container in gz file.<br>
+35. docker container port <container-name> private_port [/proto]<br>
+    List port mappings for a container.<br>
 
-32.docker container inspect <container name> <br>
-  docker inspect command which provides detailed info about container<br> 
+36. docker container prune <br>
+    Removes stopped container <br>
 
-33.docker container logs [options] container-name<br> 
-   Fetches the container logs  
-   docker container ls [options] <br>
-   docker container ls -a <br> 
-   Lists the running container by default and lists all container <br>  
+37. docker  container rename <container-name> <new-name>.<br> 
+    Renames a container name <br>
 
-34.docker container pause <container-name> <br>
-   Pause all processes or container with one or more processes.<br> 
+38. docker container restart  <container –name> <br>
+    Restart one or more container. <br>
 
-35.docker container port <container-name> private_port [/proto]<br>
-   List port mappings for a container.<br>
+39. docker container rm [options] container-name<br> 
+    Removes one or more container. <br>
 
-36.docker container prune <br>
-   Removes stopped container <br>
+ 40. docker container rm  --force <container–name><br>  
+     To remove the running container forcefully.<br>
 
-37.docker  container rename <container-name> <new-name>.<br> 
-   Renames a container name <br>
-
-38.docker container restart  <container –name> <br>
-   Restart one or more container. <br>
-
-39.docker container rm [options] container-name<br> 
-   Removes one or more container. <br>
-
- 40.docker container rm  --force <container–name><br>  
-   To remove the running container forcefully.<br>
-
-.41.docker diff<br>      
-   Inspect changes to files or directories on a container’s fileeystem.<br> 
+41. docker diff<br>      
+    Inspect changes to files or directories on a container’s fileeystem.<br> 
   
-42.docker info<br> 
-   This command displays system wide information regarding the Docker installation.<br>  
+42. docker info<br> 
+    This command displays system wide information regarding the Docker installation.<br>  
 
-43.docker kill <container1> <con2> …<br> 
-   Kills one or more container.<br> 
+43. docker kill <container1> <con2> …<br> 
+    Kills one or more container.<br> 
 
-44.docker load --input fedora.tar<br> 
-   Load an image from a tar archive or STDIN<br>    
+44. docker load --input fedora.tar<br> 
+    Load an image from a tar archive or STDIN<br>    
 
-45.docker login<br> 
-   Login to a registry . Need to enter docker id and password in order to pull and push from the registry.<br>  
+45. docker login<br> 
+    Login to a registry . Need to enter docker id and password in order to pull and push from the registry.<br>  
 
-46.docker top <contid><br>  
-   List the top processes in container<br>  
+46. docker top <contid><br>  
+    List the top processes in container<br>  
 
-47.docker pause <contid><br>  
-   To pause the container and unpause the container.<br>  
+47. docker pause <contid><br>  
+    To pause the container and unpause the container.<br>  
 
-48.Systemctl docker stop<br>  
-   To stop the docker<br>  
+48. Systemctl docker stop<br>  
+    To stop the docker<br>  
 
 # DOCKERFILE 
 
