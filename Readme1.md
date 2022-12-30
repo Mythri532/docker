@@ -6,7 +6,7 @@ Docker is a containerization platform which packages your application and all it
 **Docker container-**
 Docker containers include the application and all of its dependencies. It shares the kernel with other containers, running as isolated processes in user space on the host operating system. Docker containers are not tied to any specific infrastructure: they run on any computer, on any infrastructure, and in any cloud.
 
-**Docker Architecture-**
+# Docker Architecture
 
 **a) Docker Daemon** - listens to Docker API requests and manages Docker objects such as images, containers, networks  and volumes. 
 
@@ -24,7 +24,7 @@ Architecture is referred in
   Referred in 
 
 
-#Installation of docker in centos machine. 
+# Installation of docker in centos machine. 
 
 Set up the repository 
 
@@ -41,14 +41,14 @@ Set up the repository
   5. sudo docker run hello-world 
    
 
-**Docker commands:**
+# Docker commands:
 
-1.To start docker 
-  systemctl start docker  
+1.<p>To start docker<br> 
+  systemctl start docker</p>  
 
-2.To pull image from repository - 
-  docker pull centos 
-  docker pull ubuntu 
+2.<p>To pull image from repository - 
+  docker pull centos<br>
+  docker pull ubuntu</p> 
 
 3.To show all images 
   docker images 
