@@ -482,7 +482,7 @@ Step 3: docker-compose version<br>
 sudo vi docker-compose.yml<br>
 
 version: 2<br>
-services:<br>
+services:  <br>
   databases:<br>
     image: mysql<br>
     ports:<br>
