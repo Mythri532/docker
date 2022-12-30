@@ -272,20 +272,20 @@ SHELL ["executable", "parameters"]<br>
 
 Once the dockerfile is ready we can execute docker build command to build an image from docker file.<br> 
 
-**docker build –t image-name:tagname <dir> or docker build –t dockerfile.**<br> 
+docker build –t image-name:tagname <dir> or docker build –t dockerfile.<br> 
 
-**-t** − is to mention a tag to the image<br> 
+-t − is to mention a tag to the image<br> 
 
-**ImageName** − This is the name you want to give to your image.<br>  
+ImageName − This is the name you want to give to your image.<br>  
 
-**TagName** − This is the tag you want to give to your image.<br>
+TagName − This is the tag you want to give to your image.<br>
 
-**Dir** − The directory where the Docker File is present.<br> 
+Dir − The directory where the Docker File is present.<br> 
 
 
 **Examples**<br> 
 
-FROM ubuntu <br> 
+FROM ubuntu <br>
 MAINTAINER demousr@gmail.com<br>  
 RUN apt-get update <br> 
 RUN apt-get install –y nginx<br>  
@@ -294,7 +294,7 @@ CMD [“echo”,”Image created”]<br>
 FROM alpine<br>  
 RUN apk update <br> 
 RUN apk add wget <br> 
-RUN rm -rf /var/cache/apk/*<br>  
+RUN rm -rf /var/cache/apk/<br>
 WORKDIR /root/ <br> 
 ENTRYPOINT [ "wget"]<br> 
 CMD ["--help"]<br>
