@@ -20,7 +20,7 @@ Docker containers include the application and all of its dependencies. It shares
 
 # Installation of docker in centos machine. 
 
-     setup up the repository 
+     setup up the repository
   1. sudo yum install -y yum-utils 
 
   2. sudo yum-config-manager \ 
