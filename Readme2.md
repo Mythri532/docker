@@ -1,8 +1,8 @@
-                                                             ## Overview of Kubernetes 
-# what is Kubernetes?
+                                                             # Overview of Kubernetes 
+# What is Kubernetes?
 Kubernetes (also known as k8s or “kube”) is an open source container orchestration platform that automates many of the manual processes<br> involved in deploying, managing, and scaling containerized applications.<br>
 
-#Features of Kubernetes 
+# Features of Kubernetes 
 
 Continues development, integration and deployment<br>
 
