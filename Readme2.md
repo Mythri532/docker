@@ -540,25 +540,14 @@ There are 3 parts in these configuration<br>
  
 [root@localhost centos]# cat mongo-express.yaml 
 
-![mongo-express yaml1](https://user-images.githubusercontent.com/121296386/210205628-64c8743f-54fe-4278-ab9b-7c1a1a1029
- 
+![mongo-express yaml](https://user-images.githubusercontent.com/121296386/210211989-4d43c911-021d-4df2-921f-5aac88e39602.png)
+
+![mongo-express yaml1](https://user-images.githubusercontent.com/121296386/210212046-adcf06b7-c064-4e00-bcaf-5ed58768f903.png)
+
 [root@localhost centos]# cat mongo-secret.yaml 
 
-apiVersion: v1 
+![mong-secret yaml](https://user-images.githubusercontent.com/121296386/210212066-24ebec2f-0f9a-4c94-bfb1-7747a15d9a56.png)
 
-kind: Secret 
-
-metadata: 
-
-  name: mongodb-secret 
-
-type: Opaque 
-
-data: 
-
-     mongo-root-username: dXNlcm5hbWU= 
-
-     mongo-root-password: cGFzc3dvcmQ= 
 
   
 
