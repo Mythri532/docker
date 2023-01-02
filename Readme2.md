@@ -529,21 +529,7 @@ Pod is the samleest unit ,but we are creating deployment abstraction over pods.<
 Yaml configuration files <br> 
 There are 3 parts in these configuration<br> 
 
-[root@localhost centos]# cat mongo-configmap.yaml<br> 
-
-apiVersion: v1<br> 
-
-kind: ConfigMap <br>
-
-metadata: <br>
-
-  name: mongodb-configmap<br> 
-
-data: <br>
-
-  database_url: mongodb-service<br> 
-
-[root@localhost centos]# cat mongo-configmap.yaml
+ [root@localhost centos]# cat mongo-configmap.yaml
 
 [root@localhost centos]# cat mongodb-deployment.yaml 
 [root@localhost centos]# cat mongo-express.yaml 
