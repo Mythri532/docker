@@ -533,7 +533,9 @@ There are 3 parts in these configuration<br>
  
 ![mongo-configmap yaml ](https://user-images.githubusercontent.com/121296386/210205592-80516dd9-a620-434c-8428-7977f5c55e9d.png)
 
-[root@localhost centos]# cat mongodb-deployment.yaml 
+[root@localhost centos]# cat mongodb-deployment.yaml
+![mongodb-deployment yaml](https://user-images.githubusercontent.com/121296386/210205601-81403eb5-2fd9-468c-a2d3-bbc217bb3dbe.png)
+
 [root@localhost centos]# cat mongo-express.yaml 
 
 apiVersion: apps/v1 
