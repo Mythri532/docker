@@ -244,7 +244,8 @@ If the url is https://domain-name:port then the request is first forwarded to in
 
 **ConfigMap** 
 
-If the application need connection to database endpoint, if the database url changes then it would be difficult task to rebuild the image again. So for this purpose<br> configMap component is used in which we configure database url, db username, db password so that any changes can be applied without the need to rebuild the<br> image.It provides external configuratin for your application.<br> 
+If the application need connection to database endpoint, if the database url changes then it would be difficult task to rebuild the image again.<br>
+So for this purpose configMap component is used in which we configure database url, db username, db password so that any changes can be applied without the need to<br> rebuild the image.It provides external configuratin for your application.<br> 
 
 **secret** 
 
