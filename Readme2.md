@@ -545,9 +545,6 @@ data: <br>
 
 [root@localhost centos]# cat mongo-configmap.yaml
 ![mongo-configmap yaml ](https://user-images.githubusercontent.com/121296386/210205592-80516dd9-a620-434c-8428-7977f5c55e9d.png)
-
- 
-
 [root@localhost centos]# cat mongodb-deployment.yaml 
 
 
