@@ -1,10 +1,8 @@
-# Overview of Kubernetes 
-
+                                                             ## Overview of Kubernetes 
+# what is Kubernetes?
 Kubernetes (also known as k8s or “kube”) is an open source container orchestration platform that automates many of the manual processes<br> involved in deploying, managing, and scaling containerized applications.<br>
 
- 
-
-## Features of Kubernetes 
+#Features of Kubernetes 
 
 Continues development, integration and deployment<br>
 
@@ -22,21 +20,17 @@ Higher density of resource utilization <br>
 
 Predictable infrastructure which is going to be created<br> 
 
- 
-
 # Kubernetes Architecture 
 
+![kubernetes arch](https://user-images.githubusercontent.com/121296386/210240931-42fe304a-9f02-4b3a-9474-0a73090a7d4d.png)
  
-
 **Master Nodes** 
 
 This Master node which control the cluster state and nodes<br>   
 
-API Server - The API Server provides APIs to support lifecycle orchestration scaling,updates and so on for different types of applications. It<br> also acts as the gateway to the cluster, which get the initial request to update the cluster , query to cluster so the API server must<br> be accessible by clients from outside the cluster. Acts as a gatekeeper to authenticate the request to cluster .Clients authenticate <br>via the API Server, and also use it as a proxy/tunnel to nodes and pods (and services).<br>
+**API Server** - The API Server provides APIs to support lifecycle orchestration scaling,updates and so on for different types of applications. It<br> also acts as the gateway to the cluster, which get the initial request to update the cluster , query to cluster so the API server must<br> be accessible by clients from outside the cluster. Acts as a gatekeeper to authenticate the request to cluster .Clients authenticate <br>via the API Server, and also use it as a proxy/tunnel to nodes and pods (and services).<br>
 
 Whenever pods to be created or new service ,deploy new application ,initially user should interact with master node api server further<br> request<br> will be sent to other processes.It is the entrypoint to the cluster. <br>
-
- 
 
 **The Scheduler**<br> 
 
@@ -59,8 +53,7 @@ Which is a key value store of cluster state . Cluster changes will be stored in 
 Following are the key components of Node server which are necessary to communicate with Kubernetes master.<br> 
 
 Each node has multiple pods on it. 3 processes must be installed on every node <br> 
-
-1. Container runtime<br>
+1. **Container runtime**<br>
 
 Docker which is used as container runtime which helps in running the    encapsulated application containers in a relatively isolated but <br>lightweight operating environment. Container runtime should be installed on every node.<br> 
 
@@ -68,7 +61,7 @@ Docker which is used as container runtime which helps in running the    encapsul
 
 Kubelet which schedules the pod and interacts with both container and node.Kubelet is responsible for taking the configuration and start the<br> pod with a container inside it. Kubelet is kubernetes process which assign reaources such as ram,cpu from node to container.<br>
 
-3. **Kube-proxy** 
+3. **Kube-proxy**<br>
 
 This is a proxy service which runs on each node and helps in making services available to the external host. It helps in forwarding the<br> request to correct containers and is capable of performing primitive load balancing. It makes sure that the networking environment is <br>predictable and accessible and at the same time it is isolated as well. It manages pods on node, volumes, secrets, creating new<br> containers’ health checkup, etc. <br>
 
@@ -76,18 +69,21 @@ This is a proxy service which runs on each node and helps in making services ava
 
 **Prerequisites** 
 
-Multiple Linux servers running CentOS 7 (1 Master Node, Multiple Worker Nodes)<br>
-A user account on every system with sudo or root privileges <br>
-The yum package manager, included by default <br>
-Command-line/terminal window <br>
+--> Multiple Linux servers running CentOS 7 (1 Master Node, Multiple Worker Nodes)<br>
 
- 
+--> A user account on every system with sudo or root privileges <br>
+
+--> The yum package manager, included by default <br>
+
+Command-line/terminal window <br>
 
 **Step 1: Configure Kubernetes Repository** 
 
 Kubernetes packages are not available from official CentOS 7 repositories. This step needs to be performed on the Master Node, and each Worker<br> Node you plan on utilizing for your container setup. Enter the following command to retrieve the Kubernetes repositories.<br> 
 
-These 3 basic packages are required to be able to use Kubernetes. Install the following package(s) on each node:<br>
+These 3 basic packages are required to be able to use Kubernetes.<br> 
+
+Install the following package(s) on each node:<br>
 
 cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo <br>
 
@@ -117,7 +113,7 @@ systemctl enable kubelet <br>
 
 systemctl start kubelet <br>
 
-Step 3: Set Hostname on Nodes<br> 
+**Step 3: Set Hostname on Nodes**<br> 
 
 To give a unique hostname to each of your nodes, use this command:<br> 
 
@@ -135,7 +131,7 @@ ip master.phoenixnap.com master-node<br>
 
 ip node1. phoenixnap.com node1 worker-node<br> 
 
-Step 4: Configure Firewall <br>
+**Step 4: Configure Firewall** <br>
 The nodes, containers, and pods need to be able to communicate across the cluster to perform their functions. Firewalld is enabled in CentOS<br> by default on the front-end. Add the following ports by entering the listed commands.<br> 
 
 On the Master Node enter: <br>
@@ -162,7 +158,7 @@ sudo firewall-cmd --permanent --add-port=10255/tcp<br>
 
 firewall-cmd –reload <br>
 
-Step 5: Update Iptables Settings<br> 
+**Step 5: Update Iptables Settings**<br> 
 
 Set the net.bridge.bridge-nf-call-iptables to '1' in your sysctl config file. This ensures that packets are properly processed by IP tables <br>during filtering and port forwarding. <br>
 
@@ -176,7 +172,7 @@ EOF <br>
 
 sysctl –system<br> 
 
-Step 6: Disable SELinux <br>
+**Step 6: Disable SELinux** <br>
 
 The containers need to access the host filesystem. SELinux needs to be set to permissive mode, which effectively disables its security functions. <br>
 
@@ -184,7 +180,7 @@ sudo setenforce 0<br>
 
 sudo sed -i ‘s/^SELINUX=enforcing$/SELINUX=permissive/’ /etc/selinux/config<br> 
 
-Step 7: Disable SWAP<br> 
+**Step 7: Disable SWAP**<br> 
 
 The containers need to access the host filesystem. SELinux needs to be set to permissive mode, which effectively disables its security functions. <br>
 
@@ -192,7 +188,7 @@ sudo sed -i '/swap/d' /etc/fstab sudo swapoff –a <br>
 
 **How to deploy kubernetes cluster** <br>
 
-Step 1: **Create Cluster with kubeadm**
+**Step 1: Create Cluster with kubeadm**
 
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16<br>
 
@@ -200,7 +196,7 @@ Initialize a cluster by executing the command <br>
 
 The process might take several minutes to complete based on network speed. Once this command finishes, it displays a kubeadm join message.<br> Make a note of the entry and use it to join worker nodes to the cluster at a later stage. <br>
 
-Step 2: **Manage Cluster as Regular User** <br>
+**Step 2: Manage Cluster as Regular User** <br>
 
 To start using the cluster you need to run it as a regular user by typing:<br>
 
@@ -210,7 +206,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config<br>
 
 sudo chown $(id -u):$(id -g) $HOME/.kube/config <br>
 
-Step 3: Set Up Pod Network <br>
+**Step 3: Set Up Pod Network** <br>
 
 A Pod Network allows nodes within the cluster to communicate. There are several available Kubernetes networking options. Use the following<br> command to install the flannel pod network add-on: <br>
 
@@ -218,7 +214,7 @@ sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Do
 
 If you decide to use flannel, edit your firewall rules to allow traffic for the flannel default port 8285. 
 
-Step 4: Check Status of Cluster <br>
+**Step 4: Check Status of Cluster** <br>
 
 Check the status of the nodes by entering the following command on the master server:<br> 
 
@@ -228,7 +224,7 @@ Once a pod network has been installed, you can confirm that it is working by che
 
 sudo kubectl get pods --all-namespaces <br>
 
-Step 5: Join Worker Node to Cluster <br>
+**Step 5: Join Worker Node to Cluster** <br>
 
 As indicated in Step 1, you can use the kubeadm join command on each worker node to connect it to the cluster.<br> 
 
@@ -404,8 +400,7 @@ kubectl expose pod my-first-pod --type=NodePort --port=80 --name=my-first-servic
 kubectl get service <br>
 
 kubectl get svc<br>  
-
-
+ 
 # Get Public IP of Worker Nodes  
 
 kubectl get nodes -o wide<br> 
@@ -428,9 +423,9 @@ kubectl exec -it my-first-pod ls <br>
 
 # Get pod definition YAML output 
 
- kubectl get pod my-first-pod -o yaml<br> 
+kubectl get pod my-first-pod -o yaml<br> 
 
- # Get service definition YAML output  
+# Get service definition YAML output  
 
 kubectl get service my-first-service -o yaml<br> 
 
@@ -438,7 +433,7 @@ kubectl get service my-first-service -o yaml<br>
 
 kubectl get all <br>
 
- # Delete Services  
+# Delete Services  
 
 kubectl delete svc my-first-service<br> 
 
@@ -452,7 +447,7 @@ kubectl delete pod my-first-pod  <br>
 
 # Get all Objects in default namespace 
 
- kubectl get all <br>
+kubectl get all <br>
 
 # Get list of ReplicaSets 
 
@@ -516,7 +511,6 @@ kubectl delete svc my-helloworld-rs-service
 
 kubectl get svc
  
-
 # Minikube setup 
 
 To Test on local machine minikube can be installed. Kubectl which will interact with kubernetes cluster . Minikube which has master process<br> and worker proces running in same node <br>
@@ -526,28 +520,30 @@ Kubectl get nodes- displays the nodes <br>
 Kubectl get services- displays all the services .<br> 
 
 Pod is the samleest unit ,but we are creating deployment abstraction over pods.<br> 
-## Pod creation using Yaml
+
+ # Pod creation using Yaml
 
 ![tomcat yml](https://user-images.githubusercontent.com/121296386/210214153-5444ae17-2db4-4fb6-8506-4d1a5c238c0d.png)
 
  kubectl create –f tomcat.yml
 
-Yaml configuration files <br> 
-There are 3 parts in these configuration<br> 
+**Yaml configuration files** <br> 
 
- [root@localhost centos]# cat mongo-configmap.yaml
+ There are 3 parts in these configuration<br> 
+
+ **[root@localhost centos]# cat mongo-configmap.yaml**
  
 ![mongo-configmap yaml ](https://user-images.githubusercontent.com/121296386/210205592-80516dd9-a620-434c-8428-7977f5c55e9d.png)
 kubectl apply -f mongo-confipmap.yaml
 
-[root@localhost centos]# cat mongodb-deployment.yaml
+**[root@localhost centos]# cat mongodb-deployment.yaml**
  
 ![mongodb-deployment yaml](https://user-images.githubusercontent.com/121296386/210205601-81403eb5-2fd9-468c-a2d3-bbc217bb3dbe.png)
 ![mongodb-deployment1 yaml](https://user-images.githubusercontent.com/121296386/210205606-9700fe8b-7b29-4337-90c9-9b985af091c8.png)
  
 kubectl apply -f mongodb-deployment.yaml
  
-[root@localhost centos]# cat mongo-express.yaml 
+**[root@localhost centos]# cat mongo-express.yaml** 
 
 ![mongo-express yaml](https://user-images.githubusercontent.com/121296386/210211989-4d43c911-021d-4df2-921f-5aac88e39602.png)
 
@@ -555,48 +551,53 @@ kubectl apply -f mongodb-deployment.yaml
 
 kubectl apply -f mongodb-deployment.yaml
 
-[root@localhost centos]# cat mongo-secret.yaml 
+**[root@localhost centos]# cat mongo-secret.yaml** 
 
 ![mong-secret yaml](https://user-images.githubusercontent.com/121296386/210212066-24ebec2f-0f9a-4c94-bfb1-7747a15d9a56.png)
 
 kubectl apply -f mongo-secret.yaml
 
-[root@localhost centos]# cat nginx-deployment.yaml 
+**[root@localhost centos]# cat nginx-deployment.yaml** 
 
 ![nginx-deployment yaml](https://user-images.githubusercontent.com/121296386/210212396-94b2e0c2-fe8a-4171-b834-2da83f60268d.png)
  
 kubectl apply -f nginx-deployment.yaml<br>
 
-labels and selectors:
+**Labels and Selectors:**
 
 Labels are key-value pairs which are attached to pods, replication controller and services. They are used as identifying attributes for objects such as pods and<br> replication controller. They can be added to an object at creation time and can be added or modified at the run time.<br>
  
-Selectors:<br>
+**Selectors:**<br>
 
 Labels do not provide uniqueness. In general, we can say many objects can carry the same labels. Labels selector are core grouping primitive in Kubernetes.They are<br> used by the users to select a set of objects.<br>
 
 Kubernetes API currently supports two type of selectors −<br>
 
-Equality-based selectors<br>
-Set-based selectors<br>
+**Equality-based selectors<br>
+
+Equality-based label selectors work by specifying an exact value that you want to match against. If you provide multiple selectors, all of them must be satisfied to<br>qualify as a match.<br>
+
+**Set-based selectors**<br>
+
+In set based selectors you can specify multiple values in a single selector, and only one of them needs to match for the object to<br> qualify.
 
 NOTE: Deployment manages pods,Replicatset manages pod,pod is an abstraction of container,Demo Project:<br> 
 
 Mongo express application from browser ---> Mongo express external service--->Mongo pod-->Mongo db internal service--->Mongodb pod<br>
  
-What is Namespace? 
+# What is Namespace? 
 
 Namespaces are a way to organize clusters into virtual sub-clusters — they can be helpful when different teams or projects share a Kubernetes cluster. Any number of<br> namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other.<br>
 
-Kubernetes-dashboard – This namspace is specific to mini-kube.<br> 
+**Kubernetes-dashboard** – This namspace is specific to mini-kube.<br> 
 
-Kube-system –Do not create or modify in kube system, kubectl , manages master process.<br> 
+**Kube-system** – Do not create or modify in kube system, kubectl , manages master process.<br> 
 
-Kube-public – It contains publicly accessible data, configmap which contains clusterinfo.<br> 
+**Kube-public** – It contains publicly accessible data, configmap which contains clusterinfo.<br> 
 
-Kube-node-lease –heartbeats of node,each node has associated lease object in namespace,determines the availability of a node.<br>
+**Kube-node-lease** –heartbeats of node,each node has associated lease object in namespace,determines the availability of a node.<br>
 
-Default-namespace – resources you created are located here.<br> 
+**Default-namespace** – resources you created are located here.<br> 
 
 Kubectl create namespace <nameof namespace><br>
 
@@ -632,32 +633,30 @@ To change the active namespace we must install kubectx tool – Kubens namespace
 
 **Ingress vs External service** 
 
-Whenever we want to access the application via domain name instead of port then we can use ingress and make external service as internal service. 
-
+Whenever we want to access the application via domain name instead of port then we can use ingress and make external service as internal service.
+ 
 **Ingress**
 
 You can also use Ingress to expose your Service. Ingress is not a Service type, but it acts as the entry point for your cluster. It lets you consolidate your routing rules into a single resource as it can expose multiple services under the same IP address. 
 Usually the request from browser first reaches to ingress component and then to external service and then to pod in case of http://<domain-name>:ip 
 
-**Ingress and internal service configuration** 
-
-Ingress Controller 
-
-Evaluates all the rules,manages redirections,entrypoint to cluster. 
-
+# Ingress and internal service configuration** 
  
+![Ingress and internal service ](https://user-images.githubusercontent.com/121296386/210246845-4cf66cfe-55ed-4362-8b6c-722536326ee6.png)
 
+# Ingress Controller 
+
+Evaluates all the rules,manages redirections,entrypoint to cluster.
+
+![Ingress controller](https://user-images.githubusercontent.com/121296386/210247208-452742e4-cc5e-48fa-afe7-91750f387ad6.png)
  
+![Ingress controller 1](https://user-images.githubusercontent.com/121296386/210246974-aa504292-4217-4d57-b33a-71729ad68539.png)
 
- 
-
- 
-
- 
-
-Ingress yaml file configuration 
+# Ingress yaml file configuration** 
 
 Kubectl get all –n kubernetes-dashboard 
+ 
+![Ingress yaml config](https://user-images.githubusercontent.com/121296386/210247547-7a47a5ac-8aaf-4406-9c98-a27afb635d11.png)
 
 Kubectl apply –f dashboard-ingress.yaml 
 
@@ -669,24 +668,14 @@ Ingress also has backend
 
 Kubectl describe ingress dashboard-ingress –n kubernetes-dashboard 
 
-Forwarding request to multiple path of same host 
-
- 
-
- 
-
-Configuring tls certificate where we need to mention the tils value in spec section. 
-
- 
-
-Helm package manager 
+# Helm package manager 
 
 Helm which is a package manager of kubernetes and helm charts which is a bundle of yaml files,create your own helm charts with helm and push them to repository download and use existing ones. 
 
 Helm charts can be shared to public or private registeries and which can be used later. 
 
 
-K8s services 
+# K8s services 
 
 Kubernetes services connect a set of pods to an abstracted service name and IP address. Services provide discovery and routing between pods. For example, services connect an application front-end to its backend, each of which running in separate deployments in a cluster. Services use labels and selectors to match pods with other applications. The core attributes of a Kubernetes service are: 
 
@@ -730,7 +719,7 @@ Inter service communication within the cluster. For example, communication betwe
 
 Example 
 
- 
+![clusterip](https://user-images.githubusercontent.com/121296386/210247919-20de7f3d-8bea-4eba-b504-ce01319ec112.png)
 
 2. NodePort 
 
@@ -756,10 +745,8 @@ Prefer to place a load balancer above your nodes to avoid node failure.
 
 Example 
 
+![Nodeport](https://user-images.githubusercontent.com/121296386/210247958-15e0207f-5245-45bf-8005-d9ef4dc185df.png)
  
-
- 
-
 3. LoadBalancer 
 
 LoadBalancer service is an extension of NodePort service. NodePort and ClusterIP Services, to which the external load balancer routes, are automatically created. 
@@ -784,8 +771,8 @@ This type of service is typically heavily dependent on the cloud provider.
 
 Example 
 
+![loadbalancer](https://user-images.githubusercontent.com/121296386/210248003-4c13ac1a-6cef-4a72-ac48-bd74814d55e1.png)
  
-
 4. ExternalName 
 
 Services of type ExternalName map a Service to a DNS name, not to a typical selector such as my-service. 
@@ -804,6 +791,7 @@ You can use that ExternalName service (as a local service) when Pods from one na
 
 Example 
 
+![externalip](https://user-images.githubusercontent.com/121296386/210247945-29b7abf8-a5d0-404c-b3a2-4ae26e15d45f.png)
  
 
  
