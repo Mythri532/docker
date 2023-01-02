@@ -541,7 +541,7 @@ There are 3 parts in these configuration<br>
 [root@localhost centos]# cat mongo-express.yaml 
 
 ![mongo-express yaml1](https://user-images.githubusercontent.com/121296386/210205628-64c8743f-54fe-4278-ab9b-7c1a1a1029
-
+ 
 [root@localhost centos]# cat mongo-secret.yaml 
 
 apiVersion: v1 
