@@ -543,99 +543,14 @@ data: <br>
 
   database_url: mongodb-service<br> 
 
-[root@localhost centos]# cat mongo-configmap.yaml 
+[root@localhost centos]# cat mongo-configmap.yaml
+![mongo-configmap yaml ](https://user-images.githubusercontent.com/121296386/210205592-80516dd9-a620-434c-8428-7977f5c55e9d.png)
 
  
 
 [root@localhost centos]# cat mongodb-deployment.yaml 
 
-apiVersion: apps/v1 
 
-kind: Deployment 
-
-metadata: 
-
-  name: mongodb-deployment 
-
-  labels: 
-
-    app: mongodb 
-
-spec: 
-
-  replicas: 1 
-
-  selector: 
-
-    matchLabels: 
-
-      app: mongodb 
-
-  template: 
-
-    metadata: 
-
-      labels: 
-
-        app: mongodb 
-
-    spec: 
-
-      containers: 
-
-      - name: mongodb 
-
-        image: mongo 
-
-        ports: 
-
-        - containerPort: 27017 
-
-        env: 
-
-        - name: MONGO_INITDB_ROOT_USERNAME 
-
-          valueFrom: 
-
-            secretKeyRef: 
-
-              name: mongodb-secret 
-
-              key: mongo-root-username 
-
-        - name: MONGO_INITDB_ROOT_PASSWORD 
-
-          valueFrom: 
-
-            secretKeyRef: 
-
-              name: mongodb-secret 
-
-              key: mongo-root-password 
-
----------- 
-
-apiVersion: v1 
-
-kind: Service 
-
-metadata: 
-
-  name: mongodb-service 
-
-spec: 
-
-  selector: 
-
-    app: mongodb 
-
-  ports: 
-
-    - protocol: TCP 
-
-      port: 27017 
-
-      targetPort: 27017 
 
    
 
