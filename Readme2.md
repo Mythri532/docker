@@ -534,10 +534,13 @@ There are 3 parts in these configuration<br>
 ![mongo-configmap yaml ](https://user-images.githubusercontent.com/121296386/210205592-80516dd9-a620-434c-8428-7977f5c55e9d.png)
 
 [root@localhost centos]# cat mongodb-deployment.yaml
+ 
 ![mongodb-deployment yaml](https://user-images.githubusercontent.com/121296386/210205601-81403eb5-2fd9-468c-a2d3-bbc217bb3dbe.png)
-
+![mongodb-deployment1 yaml](https://user-images.githubusercontent.com/121296386/210205606-9700fe8b-7b29-4337-90c9-9b985af091c8.png)
+ 
 [root@localhost centos]# cat mongo-express.yaml 
 
+![mongo-express yaml1](https://user-images.githubusercontent.com/121296386/210205628-64c8743f-54fe-4278-ab9b-7c1a1a1029
 
 [root@localhost centos]# cat mongo-secret.yaml 
 
