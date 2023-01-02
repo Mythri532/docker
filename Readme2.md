@@ -545,17 +545,7 @@ data: <br>
 
 [root@localhost centos]# cat mongo-configmap.yaml 
 
-apiVersion: v1 
-
-kind: ConfigMap 
-
-metadata: 
-
-  name: mongodb-configmap 
-
-data: 
-
-  database_url: mongodb-service 
+ 
 
 [root@localhost centos]# cat mongodb-deployment.yaml 
 
