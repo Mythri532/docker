@@ -493,7 +493,7 @@ services:  <br>
     - MYSQL_USER=user<br>
     - MYSQL_PASSWORD=password<br>
     - MYSQL_DATABASE=demodb<br>
-  web:<br>
+   web:<br>
     image: nginx<br>
 
 The database and web keyword are used to define two separate services. One will be running our mysql database and the other will be our nginx<br> web server.The image keyword is used to specify the image from dockerhub for our mysql and nginx containers.For the database, we are<br> using the ports keyword to mention the ports that need to be exposed for mysql and then, we also specify the environment variables for<br> mysql which are required to run mysql.<br> 
