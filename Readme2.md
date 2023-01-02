@@ -272,216 +272,211 @@ Kubernetes cluster does not take care of data storage . Whenever the pod is rest
 
 **awsElasticBlockStore** − This type of volume mounts an Amazon Web Services (AWS) Elastic Block Store into your Pod. Just like gcePersistentDisk,<br> the data in an awsElasticBlockStore remains intact when the Pod is removed from the node.<br> 
 
-**nfs** − An nfs volume allows an existing NFS (Network File System) to be mounted into your pod. The data in an nfs volume is not erased when the<br> Pod is removed from the node. The volume is only unmounted.<br> 
+**nfs** − An nfs volume allows an existing NFS (Network File System) to be mounted into your pod. The data in an nfs volume is not erased whengit pull --rebase origin master the<br> Pod is removed from the node. The volume is only unmounted.<br> 
 
 **iscsi** − An iscsi volume allows an existing iSCSI (SCSI over IP) volume to be mounted into your pod. <br>
 
 **flocker** − It is an open-source clustered container data volume manager. It is used for managing data volumes. A flocker volume allows a<br> Flocker dataset to be mounted into a pod. If the dataset does not exist in Flocker, then you first need to create it by using the <br>Flocker API. <br>
 
-glusterfs − Glusterfs is an open-source networked filesystem. A glusterfs volume allows a glusterfs volume to be mounted into your pod.<br> 
+**glusterfs** − Glusterfs is an open-source networked filesystem. A glusterfs volume allows a glusterfs volume to be mounted into your pod.<br> 
 
-rbd − RBD stands for Rados Block Device. An rbd volume allows a Rados Block Device volume to be mounted into your pod. Data remains preserved after the Pod is removed from the node. 
+**rbd** − RBD stands for Rados Block Device. An rbd volume allows a Rados Block Device volume to be mounted into your pod. Data remains preserved<br>  after the Pod is removed from the node. <br> 
 
-cephfs − A cephfs volume allows an existing CephFS volume to be mounted into your pod. Data remains intact after the Pod is removed from the node. 
+cephfs − A cephfs volume allows an existing CephFS volume to be mounted into your pod. Data remains intact after the Pod is removed from the<br> node.<br>  
 
-gitRepo − A gitRepo volume mounts an empty directory and clones a git repository into it for your pod to use. 
+**gitRepo** − A gitRepo volume mounts an empty directory and clones a git repository into it for your pod to use.<br>  
 
-secret − A secret volume is used to pass sensitive information, such as passwords, to pods. 
+**secret** − A secret volume is used to pass sensitive information, such as passwords, to pods.<br>  
 
-persistentVolumeClaim − A persistentVolumeClaim volume is used to mount a PersistentVolume into a pod. PersistentVolumes are a way for users to “claim” durable storage (such as a GCE PersistentDisk or an iSCSI volume) without knowing the details of the particular cloud environment. 
+**persistentVolumeClaim** − A persistentVolumeClaim volume is used to mount a PersistentVolume into a pod. PersistentVolumes are a way for<br> users to “claim” durable storage (such as a GCE PersistentDisk or an iSCSI volume) without knowing the details of the particular cloud<br>  environment.<br>  
 
-downwardAPI − A downwardAPI volume is used to make downward API data available to applications. It mounts a directory and writes the requested data in plain text files. 
+**downwardAPI** − A downwardAPI volume is used to make downward API data available to applications. It mounts a directory and writes the<br>  requested<br> data in plain text files.<br>  
 
-azureDiskVolume − An AzureDiskVolume is used to mount a Microsoft Azure Data Disk into a Pod. 
+**azureDiskVolume** − An AzureDiskVolume is used to mount a Microsoft Azure Data Disk into a Pod.<br>  
 
-Persistent Volume (PV) − It’s a piece of network storage that has been provisioned by the administrator. It’s a resource in the cluster which is independent of any individual pod that uses the PV. 
+**Persistent Volume (PV)** − It’s a piece of network storage that has been provisioned by the administrator. It’s a resource in the cluster<br>  which is independent of any individual pod that uses the PV. <br> 
 
-Persistent Volume Claim (PVC) − The storage requested by Kubernetes for its pods is known as PVC. The user does not need to know the underlying provisioning. The claims must be created in the same namespace where the pod is created. 
+**Persistent Volume Claim (PVC)** − The storage requested by Kubernetes for its pods is known as PVC. The user does not need to know the<br>  underlying provisioning. The claims must be created in the same namespace where the pod is created.<br>  
 
-kind: PersistentVolume ---------> 1 
-apiVersion: v1 
-metadata: 
-   name: pv0001 ------------------> 2 
-   labels: 
-      type: local 
-spec: 
-   capacity: -----------------------> 3 
-      storage: 10Gi ----------------------> 4 
-   accessModes: 
-      - ReadWriteOnce -------------------> 5 
-      hostPath: 
-         path: "/tmp/data01" --------------------------> 6 
-
- 
-
-kind: PersistentVolume → We have defined the kind as PersistentVolume which tells kubernetes that the yaml file being used is to create the Persistent Volume. 
-
-name: pv0001 → Name of PersistentVolume that we are creating. 
-
-capacity: → This spec will define the capacity of PV that we are trying to create. 
-
-storage: 10Gi → This tells the underlying infrastructure that we are trying to claim 10Gi space on the defined path. 
-
-ReadWriteOnce → This tells the access rights of the volume that we are creating. 
-
-path: "/tmp/data01" → This definition tells the machine that we are trying to create volume under this path on the underlying infrastructure. 
-
-    Creating PV 
-
-$ kubectl create –f local-01.yaml 
-persistentvolume "pv0001" created 
-
-Persistent Volume Claim (PVC) − The storage requested by Kubernetes for its pods is known as PVC. The user does not need to know the underlying provisioning. The claims must be created in the same namespace where the pod is created. 
+kind: PersistentVolume ---------> 1 <br> 
+apiVersion: v1 <br> 
+metadata: <br> 
+   name: pv0001 ------------------> 2 <br> 
+   labels: <br> 
+      type: local<br>  
+spec:<br>  
+   capacity: -----------------------> 3 <br> 
+      storage: 10Gi ----------------------> 4<br>  
+   accessModes: <br>
+      - ReadWriteOnce -------------------> 5<br> 
+      hostPath: <br>
+         path: "/tmp/data01" --------------------------> 6 <br>
 
  
 
-kind: PersistentVolume ---------> 1 
-apiVersion: v1 
-metadata: 
-   name: pv0001 ------------------> 2 
-   labels: 
-      type: local 
-spec: 
-   capacity: -----------------------> 3 
-      storage: 10Gi ----------------------> 4 
-   accessModes: 
-      - ReadWriteOnce -------------------> 5 
-      hostPath: 
-         path: "/tmp/data01" --------------------------> 6 
+kind: PersistentVolume → We have defined the kind as PersistentVolume which tells kubernetes that the yaml file being used is to create the Persistent Volume.<br> 
+
+name: pv0001 → Name of PersistentVolume that we are creating.<br> 
+
+capacity: → This spec will define the capacity of PV that we are trying to create.<br> 
+
+storage: 10Gi → This tells the underlying infrastructure that we are trying to claim 10Gi space on the defined path.<br> 
+
+ReadWriteOnce → This tells the access rights of the volume that we are creating.<br> 
+
+path: "/tmp/data01" → This definition tells the machine that we are trying to create volume under this path on the underlying infrastructure.<br> 
+
+Creating PV <br>
+
+kubectl create –f local-01.yaml <br>
+persistentvolume "pv0001" created <br>
+
+**Persistent Volume Claim (PVC)**− The storage requested by Kubernetes for its pods is known as PVC. The user does not need to know the<br> underlying provisioning. The claims must be created in the same namespace where the pod is created. <br>
 
  
 
-kind: PersistentVolume → We have defined the kind as PersistentVolume which tells kubernetes that the yaml file being used is to create the Persistent Volume. 
+kind: PersistentVolume ---------> 1 <br>
+apiVersion: v1 <br>
+metadata:<br> 
+   name: pv0001 ------------------> 2 <br>
+   labels: <br>
+      type: local <br>
+spec: <br>
+   capacity: -----------------------> 3 <br>
+      storage: 10Gi ----------------------> 4 <br>
+   accessModes: <br>
+      - ReadWriteOnce -------------------> 5<br> 
+      hostPath: <br>
+         path: "/tmp/data01" --------------------------> 6<br> 
 
-name: pv0001 → Name of PersistentVolume that we are creating. 
+kind: PersistentVolume → We have defined the kind as PersistentVolume which tells kubernetes that the yaml file being used is to create the <br>Persistent Volume. <br>
+name: pv0001 → Name of PersistentVolume that we are creating. <br>
 
-capacity: → This spec will define the capacity of PV that we are trying to create. 
+capacity: → This spec will define the capacity of PV that we are trying to create. <br>
 
-storage: 10Gi → This tells the underlying infrastructure that we are trying to claim 10Gi space on the defined path. 
+storage: 10Gi → This tells the underlying infrastructure that we are trying to claim 10Gi space on the defined path.<br> 
 
-ReadWriteOnce → This tells the access rights of the volume that we are creating. 
+ReadWriteOnce → This tells the access rights of the volume that we are creating.<br> 
 
-path: "/tmp/data01" → This definition tells the machine that we are trying to create volume under this path on the underlying infrastructure. 
+path: "/tmp/data01" → This definition tells the machine that we are trying to create volume under this path on the underlying infrastructure.<br> 
 
-volumeMounts: → This is the path in the container on which the mounting will take place. 
+volumeMounts: → This is the path in the container on which the mounting will take place.<br> 
 
-Volume: → This definition defines the volume definition that we are going to claim. 
+Volume: → This definition defines the volume definition that we are going to claim. <br>
 
-persistentVolumeClaim: → Under this, we define the volume name which we are going to use in the defined pod. 
+persistentVolumeClaim: → Under this, we define the volume name which we are going to use in the defined pod.<br> 
 
-         
+7. **Deployment** 
 
-   7. Deployment 
+In order to create the replicas of pod we use deployment component which provide blue print of a pod.You create deployment where you can scale<br> up or down the no of pods required. <br>
+Db can’t be replicated via deployment .so this replica set can be done by statefulset for databases such as mysql, elasticsearch, mongo db.<br> 
 
-     In order to create the replicas of pod we use deployment component which provide blue print of a pod.You create deployment where you can scale up or down the no of pods required. 
+8. **Statefulset**  
 
-   Db can’t be replicated via deployment .so this replica set can be done by statefulset for databases such as mysql, elasticsearch, mongo db. 
+ This take care of databases replucation such as mongodb,elasticsearch, mysql etc this approach of deploying database using statefulset is<br> tedious so it is always recommended to use databases outside kubernetes cluster.<br> 
 
-8.Statefulset  
+**Services:** 
 
- This take care of databases replucation such as mongodb,elasticsearch, mysql etc this approach of deploying database using statefulset is tedious so it is always recommended to use databases outside kubernetes cluster. 
+To access the application from browser,we need to create a NodePort Service.<br> 
 
-Services: 
+Expose pod with a service (NodePort Service) to access the application externally (from internet)<br> 
 
-To access the application from browser,we need to create a NodePort Service. 
+port: Port on which node port service listens in Kubernetes cluster internally <br>
 
-Expose pod with a service (NodePort Service) to access the application externally (from internet) 
+targetPort: We define container port here on which our application is running.<br> 
 
-port: Port on which node port service listens in Kubernetes cluster internally 
-
-targetPort: We define container port here on which our application is running. 
-
- NodePort: Worker Node port on which we can access our application. 
+NodePort: Worker Node port on which we can access our application.<br> 
 
 # Create a Pod 
 
-kubectl run <desired-pod-name> --image <Container-Image> --generator=run-pod/v1  
+kubectl run <desired-pod-name> --image <Container-Image> --generator=run-pod/v1<br>  
 
-kubectl run my-first-pod –image stacksimplify/kubenginx:1.0.0 --generator=run-pod/v1 
+kubectl run my-first-pod –image stacksimplify/kubenginx:1.0.0 --generator=run-pod/v1 <br>
 
 # Expose Pod as a Service 
 
-kubectl expose pod <Pod-Name> --type=NodePort --port=80 --name=<Service-Name>  
+kubectl expose pod <Pod-Name> --type=NodePort --port=80 --name=<Service-Name><br>  
 
-kubectl expose pod my-first-pod --type=NodePort --port=80 --name=my-first-service 
+kubectl expose pod my-first-pod --type=NodePort --port=80 --name=my-first-service<br> 
 
 # Get Service Info  
 
-kubectl get service  
+kubectl get service <br>
 
-kubectl get svc  
+kubectl get svc<br>  
+
 
 # Get Public IP of Worker Nodes  
 
-kubectl get nodes -o wide 
+kubectl get nodes -o wide<br> 
 
-kubectl logs <pod-name> kubectl logs my-first-pod 
+kubectl logs <pod-name> kubectl logs my-first-pod <br>
 
-#Connect to a container inside a pod 
+# Connect to a container inside a pod 
 
-kubectl exec -it <pod-name> -- /bin/bash  
+kubectl exec -it <pod-name> -- /bin/bash <br> 
 
-kubectl exec -it mypod -- /bin/bash 
+kubectl exec -it mypod -- /bin/bash <br>
 
-#Running individual commands in a Container 
+# Running individual commands in a Container 
 
-kubectl exec -it my-first-pod env  
+kubectl exec -it my-first-pod env <br> 
 
-kubectl exec -it my-first-pod ls 
+kubectl exec -it my-first-pod ls <br>
 
-#Get YAML Output of Pod & Service 
+# Get YAML Output of Pod & Service 
 
 # Get pod definition YAML output 
 
- kubectl get pod my-first-pod -o yaml 
+ kubectl get pod my-first-pod -o yaml<br> 
 
  # Get service definition YAML output  
 
-kubectl get service my-first-service -o yaml 
+kubectl get service my-first-service -o yaml<br> 
 
 # Get all Objects in default namespace  
 
-kubectl get all 
+kubectl get all <br>
 
  # Delete Services  
 
-kubectl delete svc my-first-service 
+kubectl delete svc my-first-service<br> 
 
- kubectl delete svc my-first-service2  
+kubectl delete svc my-first-service2  <br>
 
-kubectl delete svc my-first-service3  
+kubectl delete svc my-first-service3 <br> 
 
 # Delete Pod  
 
-kubectl delete pod my-first-pod  
+kubectl delete pod my-first-pod  <br>
 
 # Get all Objects in default namespace 
 
- kubectl get all 
+ kubectl get all <br>
 
-#Get list of ReplicaSets 
+# Get list of ReplicaSets 
 
-kubectl get replicaset  
+kubectl get replicaset<br>  
 
-kubectl get rs 
+kubectl get rs <br>
 
-#Desc replica set 
+# Desc replica set <br>
 
-kubectl describe rs/<replicaset-name> 
+kubectl describe rs/<replicaset-name> <br>
 
-#Expose ReplicaSet as a Service 
+# Expose ReplicaSet as a Service 
 
-kubectl expose rs <ReplicaSet-Name> --type=NodePort --port=80 --target-port=8080 --name=<Service-Name-To-Be-Created> 
+kubectl expose rs <ReplicaSet-Name> --type=NodePort --port=80 --target-port=8080 --name=<Service-Name-To-Be-Created><br> 
 
- kubectl expose rs my-helloworld-rs --type=NodePort --port=80 --target-port=8080 --name=my-helloworld-rs-service  
+kubectl expose rs my-helloworld-rs --type=NodePort --port=80 --target-port=8080 --name=my-helloworld-rs-service<br>  
 
 # Get Service Info  
 
-kubectl get service kubectl get svc  
+kubectl get service kubectl get svc  <br>
 
 # Get Public IP of Worker Nodes  
 
-kubectl get nodes -o wide 
+kubectl get nodes -o wide <br>
 
 # ReplicaSet Scalability feature 
 
@@ -495,17 +490,17 @@ Update the ReplicaSet
 
 # Apply latest changes to ReplicaSet  
 
-kubectl replace -f replicaset-demo.yml  
+kubectl replace -f replicaset-demo.yml<br>  
 
 # Verify if new pods got created 
 
- kubectl get pods -o wide 
+ kubectl get pods -o wide <br>
 
 # Delete ReplicaSet  
 
-kubectl delete rs <ReplicaSet-Name> 
+kubectl delete rs <ReplicaSet-Name> <br>
 
-#Delete Service created for ReplicaSet 
+# Delete Service created for ReplicaSet 
 
 # Delete Service 
 
@@ -521,55 +516,32 @@ kubectl delete svc my-helloworld-rs-service
 
 kubectl get svc 
 
- 
+# Minikube setup 
 
- 
+To Test on local machine minikube can be installed. Kubectl which will interact with kubernetes cluster . Minikube which has master process<br> and worker proces running in same node <br>
 
- 
+Kubectl get nodes- displays the nodes <br>
 
- 
+Kubectl get services- displays all the services .<br> 
 
- 
+Pod is the samleest unit ,but we are creating deployment abstraction over pods.<br> 
 
-Minikube setup 
+Yaml configuration files <br> 
+There are 3 parts in these configuration<br> 
 
-To Test on local machine minikube can be installed. Kubectl which will interact with kubernetes cluster . Minikube which has master process and worker proces running in same node 
+[root@localhost centos]# cat mongo-configmap.yaml<br> 
 
-Kubectl get nodes- displays the nodes 
+apiVersion: v1<br> 
 
-Kubectl get services- displays all the services . 
+kind: ConfigMap <br>
 
-Pod is the samleest unit ,but we are creating deployment abstraction over pods. 
+metadata: <br>
 
-  Yaml configuration files   
+  name: mongodb-configmap<br> 
 
-  
+data: <br>
 
-There are 3 parts in these configuration 
-
- 
-
- 
-
-[root@localhost centos]# cat mongo-configmap.yaml 
-
-apiVersion: v1 
-
-kind: ConfigMap 
-
-metadata: 
-
-  name: mongodb-configmap 
-
-data: 
-
-  database_url: mongodb-service 
-
--------------------- 
-
-  
-
-  
+  database_url: mongodb-service<br> 
 
 [root@localhost centos]# cat mongo-configmap.yaml 
 
@@ -651,9 +623,7 @@ spec:
 
               key: mongo-root-password 
 
-  
-
---- 
+---------- 
 
 apiVersion: v1 
 
@@ -783,10 +753,6 @@ spec:
 
       nodePort: 30000 
 
-  
-
-  
-
 [root@localhost centos]# cat mongo-secret.yaml 
 
 apiVersion: v1 
@@ -854,40 +820,22 @@ spec:
         - containerPort: 80 
 
  
+1) Metadata -- name of the component <br>
 
-  
+2)specification - every configuartion we want to apply.Each deployment will have their own attributes.<br> 
 
-1) Metadata -- name of the component 
-
-  
-
-2)specification - evry configuartion we want to apply. 
-
-each deployment will have their own attribuets 
-
-  
-
-3)status- desired vs actual . the information will be received from etcd. 
-
-  
+3)status- desired vs actual . the information will be received from etcd. <br>
 
 apiVersion: apps/v1 
 
 kind: Deployment 
-
 metadata: 
-
    name: nginx-deployment 
-
    labels: 
-
 spec: 
-
    replicas: 2 
-
    selector: 
-
-    template 
+   template 
 
  --------------------------------------------------------------------------- 
 
