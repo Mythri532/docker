@@ -251,12 +251,12 @@ If the application need connection to database endpoint, if the database url cha
 
 **secret** 
 
-Which used to store secret data such as username and password I.e in base64 encoded format. 
+Which used to store secret data such as username and password I.e in base64 encoded format.<br> 
 
-Note: If pods deleted automatically associated resources also deleted.  
-If the node fails automatically the pod will be deleted. 
+Note: If pods deleted automatically associated resources also deleted.<br>
+If the node fails automatically the pod will be deleted. <br>
 
-Once the resources being terminated there is no chance to restart them same resources a gain, we can start like same specs other resources from our scripts and commands.The volumes are mapped with pods are available until pod available , if pod or node dies those will be deleted. 
+Once the resources being terminated there is no chance to restart them same resources a gain, we can start like same specs other resources from our scripts and<br> commands.The volumes are mapped with pods are available until pod available , if pod or node dies those will be deleted.<br>
 
 **VOLUMES** 
 
@@ -514,7 +514,8 @@ kubectl delete svc my-helloworld-rs-service
 
 # Verify if Service got deleted  
 
-kubectl get svc 
+kubectl get svc
+ 
 
 # Minikube setup 
 
@@ -525,6 +526,11 @@ Kubectl get nodes- displays the nodes <br>
 Kubectl get services- displays all the services .<br> 
 
 Pod is the samleest unit ,but we are creating deployment abstraction over pods.<br> 
+## Pod creation using Yaml
+
+![tomcat yml](https://user-images.githubusercontent.com/121296386/210214153-5444ae17-2db4-4fb6-8506-4d1a5c238c0d.png)
+
+ kubectl create –f tomcat.yml
 
 Yaml configuration files <br> 
 There are 3 parts in these configuration<br> 
@@ -532,11 +538,14 @@ There are 3 parts in these configuration<br>
  [root@localhost centos]# cat mongo-configmap.yaml
  
 ![mongo-configmap yaml ](https://user-images.githubusercontent.com/121296386/210205592-80516dd9-a620-434c-8428-7977f5c55e9d.png)
+kubectl apply -f mongo-confipmap.yaml
 
 [root@localhost centos]# cat mongodb-deployment.yaml
  
 ![mongodb-deployment yaml](https://user-images.githubusercontent.com/121296386/210205601-81403eb5-2fd9-468c-a2d3-bbc217bb3dbe.png)
 ![mongodb-deployment1 yaml](https://user-images.githubusercontent.com/121296386/210205606-9700fe8b-7b29-4337-90c9-9b985af091c8.png)
+ 
+kubectl apply -f mongodb-deployment.yaml
  
 [root@localhost centos]# cat mongo-express.yaml 
 
@@ -544,224 +553,93 @@ There are 3 parts in these configuration<br>
 
 ![mongo-express yaml1](https://user-images.githubusercontent.com/121296386/210212046-adcf06b7-c064-4e00-bcaf-5ed58768f903.png)
 
+kubectl apply -f mongodb-deployment.yaml
+
 [root@localhost centos]# cat mongo-secret.yaml 
 
 ![mong-secret yaml](https://user-images.githubusercontent.com/121296386/210212066-24ebec2f-0f9a-4c94-bfb1-7747a15d9a56.png)
 
-
-  
-
----------------------- 
+kubectl apply -f mongo-secret.yaml
 
 [root@localhost centos]# cat nginx-deployment.yaml 
 
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
-
-kind: Deployment 
-
-metadata: 
-
-  name: nginx 
-
-spec: 
-
-  strategy: 
-
-    type: Recreate 
-
-  selector: 
-
-    matchLabels: 
-
-      app: nginx 
-
-  replicas: 1 # tells deployment to run 1 pods matching the template 
-
-  template: # create pods using pod definition in this template 
-
-    metadata: 
-
-      labels: 
-
-        app: nginx 
-
-    spec: 
-
-      containers: 
-
-      - name: nginx 
-
-        image: nginx 
-
-        ports: 
-
-        - containerPort: 80 
-
+![nginx-deployment yaml](https://user-images.githubusercontent.com/121296386/210212396-94b2e0c2-fe8a-4171-b834-2da83f60268d.png)
  
-1) Metadata -- name of the component <br>
+kubectl apply -f nginx-deployment.yaml<br>
 
-2)specification - every configuartion we want to apply.Each deployment will have their own attributes.<br> 
+labels and selectors:
 
-3)status- desired vs actual . the information will be received from etcd. <br>
-
-apiVersion: apps/v1 
-
-kind: Deployment 
-metadata: 
-   name: nginx-deployment 
-   labels: 
-spec: 
-   replicas: 2 
-   selector: 
-   template 
-
- --------------------------------------------------------------------------- 
-
-replicaset-demo.yml 
-
-apiVersion: apps/v1 
-
-kind: ReplicaSet 
-
-metadata: 
-
-name: my-helloworld-rs 
-
-labels: 
-
-app: my-helloworld 
-
-spec: 
-
-replicas: 3 
-
-selector: 
-
-matchLabels: 
-
-app: my-helloworld 
-
-template: 
-
-metadata: 
-
-labels: 
-
-app: my-helloworld 
-
-spec: 
-
-containers: 
-
-- name: my-helloworld-app 
-
-image: webapp:v9 
-
-Kubectl apply –f replicaset-demo.yml 
-
-Kubectl expose rs my-helloworld-rs –-type=NodePort –port=80 
-
-Kubectl get svc 
-
+Labels are key-value pairs which are attached to pods, replication controller and services. They are used as identifying attributes for objects such as pods and<br> replication controller. They can be added to an object at creation time and can be added or modified at the run time.<br>
  
+Selectors:<br>
 
-  
+Labels do not provide uniqueness. In general, we can say many objects can carry the same labels. Labels selector are core grouping primitive in Kubernetes.They are<br> used by the users to select a set of objects.<br>
 
-Template has its own metadata.and spec section 
+Kubernetes API currently supports two type of selectors −<br>
 
-applies to a pod,blueprint for a pod  
+Equality-based selectors<br>
+Set-based selectors<br>
 
- Format of configuration file 
+NOTE: Deployment manages pods,Replicatset manages pod,pod is an abstraction of container,Demo Project:<br> 
 
- labels and selectors  
-
-  
-
-metadata par contains labels and spec contains selectors 
-
-  
-
--------- 
-
-  
-
-Deployment manages pods,Replicatset manages pod,pod is an abstraction of container,Demo Project: 
-
+Mongo express application from browser ---> Mongo express external service--->Mongo pod-->Mongo db internal service--->Mongodb pod<br>
  
-
-Mongo express application from browser ---> Mongo express external service--->Mongo pod-->Mongo db internal service--->Mongodb pod 
-
 What is Namespace? 
 
-What are the usecases? 
+Namespaces are a way to organize clusters into virtual sub-clusters — they can be helpful when different teams or projects share a Kubernetes cluster. Any number of<br> namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other.<br>
 
-How namespace work and how to use it? 
+Kubernetes-dashboard – This namspace is specific to mini-kube.<br> 
 
-What is Namespace? 
+Kube-system –Do not create or modify in kube system, kubectl , manages master process.<br> 
 
-Organise resource in namespaces,Virtual cluster inside a cluster.It Provides 4 namespace by default. 
+Kube-public – It contains publicly accessible data, configmap which contains clusterinfo.<br> 
 
-Kubernetes-dashboard – This namspace is specific to mini-kube. 
+Kube-node-lease –heartbeats of node,each node has associated lease object in namespace,determines the availability of a node.<br>
 
-Kube-system –Do not create or modify in kube system, kubectl , manages master process. 
+Default-namespace – resources you created are located here.<br> 
 
-Kube-public – It contains publicly accessible data, configmap which contains clusterinfo. 
+Kubectl create namespace <nameof namespace><br>
 
-Kube-node-lease –heartbeats of node,each node has associated lease object in namespace,determines the availability of a node. 
+**Why should we use namespace.**<br> 
 
-Default-namespace – resources you created are located here. 
+To group the resources in namespace.In order to avoid all the resources in same place.<br> 
 
-Kubectl create namespace <nameof namespace> 
+In order to avoid the conflicts between the teams and application. In order to differentiate the different application.<br> 
 
-Why should we use namespace. 
+Resource sharing and development.<br>
 
-To group the resources in namespace.In order to avoid all the resources in same place. 
+Blue/green deployment<br> 
 
-In order to avoid the conflicts between the teams and application. In order to differentiate the different application. 
+Access and resource limits on namespace.<br>
 
-Resource sharing and development. 
+Each namespace must define own configMap.<br>
 
-Blue/green deployment 
+You can’t access most resources from another namespace.<br> 
 
-Access and resource limits on namespace. 
+**Access service in another namespace.** 
 
-Each namespace must define own configMap. 
+Command to get all the namespace<br>
 
-You can’t access most resources from another namespace. 
+Kubectl get all –n my-namespace.(To get all the namespace )<br> 
 
-Access service in another namespace. 
+Kubectl apply –f mysql-config.yaml --namespace=my-namespace.<br>
 
-Command to get all the namespace 
+Kubectl get configmap –n my-namespace.<br> 
 
-Kubectl get all –n my-namespace.(To get all the namespace ) 
+We can also specify namespace in configuration file other than command line.<br> 
 
-Kubectl apply –f mysql-config.yaml --namespace=my-namespace. 
+To change the active namespace we must install kubectx tool – Kubens namespace<br> 
 
-Kubectl get configmap –n my-namespace. 
-
-We can also specify namespace in configuration file other than command line. 
-
-To change the active namespace we must install kubectx tool – Kubens namespace 
-
-Ingress vs External service 
+**Ingress vs External service** 
 
 Whenever we want to access the application via domain name instead of port then we can use ingress and make external service as internal service. 
 
-Ingress 
+**Ingress**
 
 You can also use Ingress to expose your Service. Ingress is not a Service type, but it acts as the entry point for your cluster. It lets you consolidate your routing rules into a single resource as it can expose multiple services under the same IP address. 
-
- 
-
 Usually the request from browser first reaches to ingress component and then to external service and then to pod in case of http://<domain-name>:ip 
 
- 
-
-Ingress and internal service configuration 
-
- 
-
- 
+**Ingress and internal service configuration** 
 
 Ingress Controller 
 
@@ -781,10 +659,6 @@ Ingress yaml file configuration
 
 Kubectl get all –n kubernetes-dashboard 
 
- 
-
- 
-
 Kubectl apply –f dashboard-ingress.yaml 
 
 Kubectl get ingress –n kubernetes-dashboard –watch 
@@ -795,7 +669,7 @@ Ingress also has backend
 
 Kubectl describe ingress dashboard-ingress –n kubernetes-dashboard 
 
-Forwarding request to multiplr path of same host 
+Forwarding request to multiple path of same host 
 
  
 
@@ -811,11 +685,6 @@ Helm which is a package manager of kubernetes and helm charts which is a bundle 
 
 Helm charts can be shared to public or private registeries and which can be used later. 
 
- 
-
- 
-
-Kubectl describe ingress dashboard-ingress –n kubernetes-dashboard 
 
 K8s services 
 
