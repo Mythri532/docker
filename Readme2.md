@@ -237,7 +237,8 @@ kubeadm join --discovery-token cfgrty.1234567890jyrfgd  --discovery-token-ca-cer
 
 **Node** - Nodes are the physical servers or VMs<br> 
 
-**Pod** – smallest unit of  k8s, abstraction over container.Usually one application per pod.Each pod get its own ip address(internal ip <br>address).whenever the pod dies new pod with new ip gets created<br>  
+**Pod** – smallest unit of  k8s, abstraction over container.Usually one application per pod.Each pod get its own ip address(internal ip address).whenever the pod <br>
+dies new pod with new ip gets created<br>  
 
 **Service** – Assigns a permannent ip address to a pod. Lifecycle of pod and application is not connected. Whenever you want to access the app through browser so<<br> external service can be used and if you wantto access the database with public access then we can create internalservice.<br>
 If the url is https://domain-name:port then the request is first forwarded to ingress and then to service.<br>
