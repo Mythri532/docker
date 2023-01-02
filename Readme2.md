@@ -1,4 +1,4 @@
-                                                             # Overview of Kubernetes 
+                                                           # Kubernetes Overview 
 # What is Kubernetes?
 Kubernetes (also known as k8s or “kube”) is an open source container orchestration platform that automates many of the manual processes<br> involved in deploying, managing, and scaling containerized applications.<br>
 
@@ -26,11 +26,11 @@ Predictable infrastructure which is going to be created<br>
  
 **Master Nodes** 
 
-This Master node which control the cluster state and nodes.<br>   
+This Master node which control the cluster state and nodes<br>   
 
 **API Server** - The API Server provides APIs to support lifecycle orchestration scaling,updates and so on for different types of applications. It<br> also acts as the gateway to the cluster, which get the initial request to update the cluster , query to cluster so the API server must<br> be accessible by clients from outside the cluster. Acts as a gatekeeper to authenticate the request to cluster .Clients authenticate <br>via the API Server, and also use it as a proxy/tunnel to nodes and pods (and services).<br>
 
-Whenever pods to be created or new service ,deploy new application ,initially user should interact with master node api server further request will be sent to other<br> processes.It is the entrypoint to the cluster. <br>
+Whenever pods to be created or new service ,deploy new application ,initially user should interact with master node api server further<br> request<br> will be sent to other processes.It is the entrypoint to the cluster. <br>
 
 **The Scheduler**<br> 
 
@@ -53,16 +53,15 @@ Which is a key value store of cluster state . Cluster changes will be stored in 
 Following are the key components of Node server which are necessary to communicate with Kubernetes master.<br> 
 
 Each node has multiple pods on it. 3 processes must be installed on every node <br> 
-
-**Container runtime**<br>
+1. **Container runtime**<br>
 
 Docker which is used as container runtime which helps in running the    encapsulated application containers in a relatively isolated but <br>lightweight operating environment. Container runtime should be installed on every node.<br> 
 
- **kubelet**<br>  
+2. **kubelet**<br>  
 
 Kubelet which schedules the pod and interacts with both container and node.Kubelet is responsible for taking the configuration and start the<br> pod with a container inside it. Kubelet is kubernetes process which assign reaources such as ram,cpu from node to container.<br>
 
-**Kube-proxy**<br>
+3. **Kube-proxy**<br>
 
 This is a proxy service which runs on each node and helps in making services available to the external host. It helps in forwarding the<br> request to correct containers and is capable of performing primitive load balancing. It makes sure that the networking environment is <br>predictable and accessible and at the same time it is isolated as well. It manages pods on node, volumes, secrets, creating new<br> containers’ health checkup, etc. <br>
 
@@ -80,7 +79,7 @@ Command-line/terminal window <br>
 
 **Step 1: Configure Kubernetes Repository** 
 
-Kubernetes packages are not available from official CentOS 7 repositories. This step needs to be performed on the Master Node, and each Worker Node you plan on<br> utilizing for your container setup. Enter the following command to retrieve the Kubernetes repositories.<br> 
+Kubernetes packages are not available from official CentOS 7 repositories. This step needs to be performed on the Master Node, and each Worker<br> Node you plan on utilizing for your container setup. Enter the following command to retrieve the Kubernetes repositories.<br> 
 
 These 3 basic packages are required to be able to use Kubernetes.<br> 
 
@@ -233,18 +232,18 @@ kubeadm join --discovery-token cfgrty.1234567890jyrfgd  --discovery-token-ca-cer
 
 **Replace the codes with the ones from your master server. Repeat this action for each worker node on your cluster.** 
 
- # Main k8s components<br> 
+ Main k8s components<br> 
 
 **Node** - Nodes are the physical servers or VMs<br> 
 
 **Pod** – smallest unit of  k8s, abstraction over container.Usually one application per pod.Each pod get its own ip address(internal ip <br>address).whenever the pod dies new pod with new ip gets created<br>  
 
-**Service** – Assigns a permannent ip address to a pod. Lifecycle of pod and application is not connected. Whenever you want to access the app through browser so<<br> external service can be used and if you wantto access the database with public access then we can create internalservice.<br>
+**Service** – Assigns a permannent ip address to a pod. Lifecycle of pod and application is not connected. Whenever you want to access the app <br>through browser so external service can be used and if you wantto access the database with public access then we can create internal<br> service. <br>
 If the url is https://domain-name:port then the request is first forwarded to ingress and then to service.<br>
 
 **ConfigMap** 
 
-If the application need connection to database endpoint, if the database url changes then it would be difficult task to rebuild the image again. So for this purpose<br> configMap component is used in which we configure database url, db username, db password so that any changes can be applied without the need to rebuild the<br> image.It provides external configuratin for your application.<br> 
+If the application need connection to database endpoint, if the database url changes then it would be difficult task to rebuild the image<br> again. So for this purpose configMap component is used in which we configure database url, db username, db password so that any changes can be<br> applied without the need to rebuild the image.It provides external configuratin for your application.<br> 
 
 **secret** 
 
