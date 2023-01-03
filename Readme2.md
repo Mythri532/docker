@@ -34,19 +34,19 @@ Whenever pods to be created or new service ,deploy new application ,initially us
 
 **The Scheduler**<br> 
 
-It is a service in master responsible for distributing the workload. It is responsible for tracking utilization of working load on cluster<br> nodes and then placing the workload on which resources are available and accept the workload. In other words, this is the mechanism <br>responsible for allocating pods to available nodes. The scheduler is responsible for workload utilization and allocating pod to new node.<br> 
+It is a service in master responsible for distributing the workload. It is responsible for tracking utilization of working load on cluster<br> nodes and then placing the workload on which resources are available and accept the workload. In other words, this is the mechanism responsible for allocating pods to available nodes. The scheduler is responsible for workload utilization and allocating pod to new node.<br> 
 
 schedule new pod---> api server---->scheduler ---->where to put the pod.<br> 
 
 **Controller Manager** <br>
 
-This controller manager detects the cluster state changes when the pods die.In general, it can be considered as a daemon which runs in<br> nonterminating loop and is responsible for collecting and sending information to API server. It works toward getting the shared state of <br>cluster and then make changes to bring the current status of the server to the desired state. The key controllers are replication <br>controller, endpoint controller, namespace controller, and service account controller. The controller manager runs different kind of controllers to handle nodes, endpoints.<br>
+This controller manager detects the cluster state changes when the pods die.In general, it can be considered as a daemon which runs in<br> nonterminating loop and is responsible for collecting and sending information to API server. It works toward getting the shared state of cluster and then make changes to bring the current status of the server to the desired state. The key controllers are replication controller, endpoint controller, namespace controller, and service account controller. The controller manager runs different kind of controllers to handle nodes, endpoints.<br>
 
 Controller manager--> scheduler --> kubelet<br>
 
 **ETCD**<br>
 
-Which is a key value store of cluster state . Cluster changes will be stored in etc in form of key value store. It stores the configuration<br>information which can be used by each of the nodes in the cluster. t is accessible only by Kubernetes API server as it may <br>have some sensitive information. It is a distributed key value Store which is accessible to all.<br> 
+Which is a key value store of cluster state . Cluster changes will be stored in etc in form of key value store. It stores the configuration<br>information which can be used by each of the nodes in the cluster. t is accessible only by Kubernetes API server as it may have some sensitive information. It is a distributed key value Store which is accessible to all.<br> 
 
 **Node process/Worker Node** <br>
 
@@ -56,7 +56,7 @@ Each node has multiple pods on it. 3 processes must be installed on every node <
 
 **Container runtime**<br>
 
-Docker which is used as container runtime which helps in running the    encapsulated application containers in a relatively isolated but <br>lightweight operating environment. Container runtime should be installed on every node.<br> 
+Docker which is used as container runtime which helps in running the    encapsulated application containers in a relatively isolated but lightweight operating environment. Container runtime should be installed on every node.<br> 
 
  **kubelet**<br>  
 
