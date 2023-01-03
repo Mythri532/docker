@@ -497,6 +497,8 @@ kubectl apply -f mongo-secret.yaml
  
 kubectl apply -f nginx-deployment.yaml<br>
 
+Mongo express application from browser ---> Mongo express external service--->Mongo pod-->Mongo db internal service--->Mongodb pod<br
+
 **Labels and Selectors:**
 
 Labels are key-value pairs which are attached to pods, replication controller and services. They are used as identifying attributes for objects such as pods and replication controller. They can be added to an object at creation time and can be added or modified at the run time.<br>
@@ -507,7 +509,7 @@ Labels do not provide uniqueness. In general, we can say many objects can carry 
 
 Kubernetes API currently supports two type of selectors −<br>
 
-**Equality-based selectors<br>
+**Equality-based selectors**<br>
 
 Equality-based label selectors work by specifying an exact value that you want to match against. If you provide multiple selectors, all of them must be satisfied to qualify as a match.<br>
 
@@ -517,8 +519,6 @@ In set based selectors you can specify multiple values in a single selector, and
 
 NOTE: Deployment manages pods,Replicatset manages pod,pod is an abstraction of container,Demo Project:<br> 
 
-Mongo express application from browser ---> Mongo express external service--->Mongo pod-->Mongo db internal service--->Mongodb pod<br>
- 
 # What is Namespace? 
 
 Namespaces are a way to organize clusters into virtual sub-clusters — they can be helpful when different teams or projects share a Kubernetes cluster. Any number of<br> namespaces are supported within a cluster, each logically separated from others but with the ability to communicate with each other.<br>
