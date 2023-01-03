@@ -290,24 +290,24 @@ A ConfigMap enables injecting configuration data into pods. Data stored within a
 
 There are two steps involved in creating a volume and making it accessible to a pod:
 
--->Declaring it in the spec:volumes property of the pod template, and then deploying the pod on some nodes
--->Mounting the volume to a specific container using the spec:containers:<name>:volumeMounts property
-When you create a volume, you must also mount it to a container, and you may not mount a volume without declaring it in the pod template.
+-->Declaring it in the spec:volumes property of the pod template, and then deploying the pod on some nodes<br>
+-->Mounting the volume to a specific container using the spec:containers:<name>:volumeMounts property<r>
+When you create a volume, you must also mount it to a container, and you may not mount a volume without declaring it in the pod template.<br>
   
 **yaml configuration**
   
- spec:
-  containers:
- —name: my-app
-    image: nginx
-    volumeMounts:
-   —name: my-volume
-      mountPath: /app/config
-  volumes:
- —name: my-volume
+ spec:<br>
+  containers:<br>
+ —name: my-app<br>
+    image: nginx<br>
+    volumeMounts:<br>
+   —name: my-volume<br>
+      mountPath: /app/config<br>
+  volumes:<br>
+ —name: my-volume<br>
   
--->volumes (at the bottom) creates a volume named my-volume and attaches it to the pod
--->volumeMounts defines how the volume is mounted, including the file path by which the volume will be available from inside the containerIt is essential that the same -->volume name is used in both places—the volume declaration and the volumeMounts property.
+-->volumes (at the bottom) creates a volume named my-volume and attaches it to the pod<br>
+-->volumeMounts defines how the volume is mounted, including the file path by which the volume will be available from inside the containerIt is essential that the same -->volume name is used in both places—the volume declaration and the volumeMounts property.<br>
 
 **Deployment** 
 
@@ -420,23 +420,13 @@ kubectl get service kubectl get svc  <br>
 
 kubectl get nodes -o wide <br>
 
-# ReplicaSet Scalability feature 
-
-Test how scalability is going to seamless & quick 
-
-Update the replicas field in replicaset-demo.yml from 3 to 6. 
-
-Before change spec: replicas: 3 # After change spec: replicas: 6 
-
-Update the ReplicaSet 
-
 # Apply latest changes to ReplicaSet  
 
 kubectl replace -f replicaset-demo.yml<br>  
 
 # Verify if new pods got created 
 
- kubectl get pods -o wide <br>
+kubectl get pods -o wide <br>
 
 # Delete ReplicaSet  
 
@@ -446,7 +436,7 @@ kubectl delete rs <ReplicaSet-Name> <br>
 
 # Delete Service 
 
- kubectl delete svc <service-name>  
+kubectl delete svc <service-name>  
 
 # Sample Commands  
 
@@ -468,7 +458,7 @@ Kubectl get services- displays all the services .<br>
 
 Pod is the samleest unit ,but we are creating deployment abstraction over pods.<br> 
 
- # Pod creation using Yaml
+# Pod creation using Yaml
 
 ![tomcat yml](https://user-images.githubusercontent.com/121296386/210214153-5444ae17-2db4-4fb6-8506-4d1a5c238c0d.png)
 
@@ -522,11 +512,11 @@ Kubernetes API currently supports two type of selectors −<br>
 
 **Equality-based selectors<br>
 
-Equality-based label selectors work by specifying an exact value that you want to match against. If you provide multiple selectors, all of them must be satisfied to<br>qualify as a match.<br>
+Equality-based label selectors work by specifying an exact value that you want to match against. If you provide multiple selectors, all of them must be satisfied to qualify as a match.<br>
 
 **Set-based selectors**<br>
 
-In set based selectors you can specify multiple values in a single selector, and only one of them needs to match for the object to<br> qualify.
+In set based selectors you can specify multiple values in a single selector, and only one of them needs to match for the object to qualify.
 
 NOTE: Deployment manages pods,Replicatset manages pod,pod is an abstraction of container,Demo Project:<br> 
 
@@ -636,13 +626,13 @@ Optional mapping of incoming ports to a targetPort
 
 Services can be defined without pod selectors. For example, to point a service to another service in a different namespace or cluster. 
 
-ClusterIP. Exposes a service which is only accessible from within the cluster. 
+**ClusterIP**. Exposes a service which is only accessible from within the cluster. 
 
-NodePort. Exposes a service via a static port on each node’s IP. 
+**NodePort**. Exposes a service via a static port on each node’s IP. 
 
-LoadBalancer. Exposes the service via the cloud provider’s load balancer. 
+**LoadBalancer**. Exposes the service via the cloud provider’s load balancer. 
 
-ExternalName. Maps a service to a predefined externalName field by returning a value for the CNAME record. 
+**ExternalName**. Maps a service to a predefined externalName field by returning a value for the CNAME record. 
 
  
 # Kubernetes — Service Types 
