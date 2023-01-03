@@ -365,8 +365,6 @@ kubectl exec -it my-first-pod env <br>
 
 kubectl exec -it my-first-pod ls <br>
 
-# Get YAML Output of Pod & Service 
-
 # Get pod definition YAML output 
 
 kubectl get pod my-first-pod -o yaml<br> 
