@@ -260,90 +260,61 @@ Once the resources being terminated there is no chance to restart them same reso
 
 Kubernetes cluster does not take care of data storage . Whenever the pod is restarted the older data is lost .Attaches physical hardware on a harddrive to your pod that could be on local machine I.e same server node where the pod is running or remotei.e outside the kubernetes<br> cluster.<br>
 
-**Types of volumes** 
+**Types of Volumes*
 
-**EmptyDir** − It is a type of volume that is created when a Pod is first assigned to a Node. It remains active as long as the Pod is running on that node. The volume is initially empty and the containers in the pod can read and write the files in the emptyDir volume. Once the<br> Pod is removed from the node, the data in the emptyDir is erased. <br>
+**PersistentVolume (PV)**
 
-**HostPath** − This type of volume mounts a file or directory from the host node’s filesystem into your pod.<br> 
+A PV is a storage resource located in the cluster. Administrators can manually provision PVs, and Kubernetes can use storage classes to dynamically provisioned PVs. Like volumes, PVs are plugins, but their lifecycle is independent of any pod using the PV.A PV works as an API object that captures the details of the storage implementation, including iSCSI, NFS, and cloud provider storage systems. It works similarly to a node but offers storage resources rather than computing.
 
-**gcePersistentDisk** − This type of volume mounts a Google Compute Engine (GCE) Persistent Disk into your Pod. The data in a gcePersistentDisk remains intact when the Pod is removed from the node. <br>
+**PersistentVolumeClaim (PVC)**
 
-**awsElasticBlockStore** − This type of volume mounts an Amazon Web Services (AWS) Elastic Block Store into your Pod. Just like gcePersistentDisk,the data in an awsElasticBlockStore remains intact when the Pod is removed from the node.<br> 
+A PVC is a storage request made by a user. It works similarly to a pod but consumes PV resources rather than node resources. A PVC can request specific storage resources, specifying size access modes such as ReadWriteOnce, ReadWriteMany, and ReadOnlyMany.PVCs enable users to consume abstract storage resources, but users typically need PVs with varying properties for different problems. This is why cluster administrators often need to offer varying PVs that differ in more than size and access modes. They can do that without exposing users to implementation details through StorageClass resources.
 
-**nfs** − An nfs volume allows an existing NFS (Network File System) to be mounted into your pod. The data in an nfs volume is not erased whengit pull --rebase origin master the Pod is removed from the node. The volume is only unmounted.<br> 
+**Ephemeral Volumes**
 
-**iscsi** − An iscsi volume allows an existing iSCSI (SCSI over IP) volume to be mounted into your pod. <br>
+Ephemeral volumes do not store data persistently across restarts. These volumes are bound to the pod's lifetime, which means they are created and deleted along with the pod. It enables stopping and restarting pods without limiting them to the availability of persistent volume.
 
-**flocker** − It is an open-source clustered container data volume manager. It is used for managing data volumes. A flocker volume allows a Flocker dataset to be mounted into a pod. If the dataset does not exist in Flocker, then you first need to create it by using the Flocker API. <br>
+**An emptyDir volume**
 
-**glusterfs** − Glusterfs is an open-source networked filesystem. A glusterfs volume allows a glusterfs volume to be mounted into your pod.<br> 
+An EmptyDir volume is created when Kubernetes assigns a pod to a node. The lifespan of this volume is tied to a pod's lifecycle existing on that specific node. An emptyDir volume recreates when containers restart or crash. However, the data in this volume is deleted and lost when the pod is removed from the node, crashes, or dies.After creating an emptyDir volume, you can declare the volume type name as a field in the pod manifest file. It shows under the volume property section with empty curly braces{} as the value. EmptyDir volumes are suitable mainly for temporary data storage. For example, you can use it for scratch space, like a disk-based merge.You can store emptyDir volumes on the medium backing the node. For example, you can use network storage or SSD. Alternatively, you can set "memory" in the emptyDir.medium field and Kubernetes will mount a RAM-backed filesystem (tmpfs). Note that Kubernetes clears tmpfs on node reboot.
 
-**rbd** − RBD stands for Rados Block Device. An rbd volume allows a Rados Block Device volume to be mounted into your pod. Data remains preserved after the Pod is removed from the node. <br> 
+**Kubernetes hostPath Volumes**
 
-cephfs − A cephfs volume allows an existing CephFS volume to be mounted into your pod. Data remains intact after the Pod is removed from the node.<br>  
+A hostPath volume mounts a directory or file from the host node's filesystem into your pod.Here are key use cases for hostPath volumes:Use a /var/lib/dockerhostPath—to run a container that requires access to Docker internals.Use a /sys hostPath—to run cAdvisor in a container.Allow a pod to specify a hostPath—to define if a certain hostPath should exist before the pod starts running and if it should be created.Specify a type for a hostPath volume—you can set this up in addition to the required path property.
 
-**gitRepo** − A gitRepo volume mounts an empty directory and clones a git repository into it for your pod to use.<br>  
+**Kubernetes Volumes ConfigMap**
 
-**secret** − A secret volume is used to pass sensitive information, such as passwords, to pods.<br>  
+A ConfigMap enables injecting configuration data into pods. Data stored within a ConfigMap can be referenced in a configMap volume type and then consumed by containerized applications that run in a pod. You need to provide the name of the ConfigMap in the volume when referencing a ConfigMap. Kubernetes lets you customize the path for a specific entry in the ConfigMap.
 
-**persistentVolumeClaim** − A persistentVolumeClaim volume is used to mount a PersistentVolume into a pod. PersistentVolumes are a way for users to “claim” durable storage (such as a GCE PersistentDisk or an iSCSI volume) without knowing the details of the particular cloud<br>  environment.<br>  
+**Kubernetes Volume Mounts**
 
-**downwardAPI** − A downwardAPI volume is used to make downward API data available to applications. It mounts a directory and writes the requested data in plain text files.<br>  
+There are two steps involved in creating a volume and making it accessible to a pod:
 
-**azureDiskVolume** − An AzureDiskVolume is used to mount a Microsoft Azure Data Disk into a Pod.<br>  
+-->Declaring it in the spec:volumes property of the pod template, and then deploying the pod on some nodes
+-->Mounting the volume to a specific container using the spec:containers:<name>:volumeMounts property
+When you create a volume, you must also mount it to a container, and you may not mount a volume without declaring it in the pod template.
+  
+**yaml configuration**
+  
+ spec:
+  containers:
+ —name: my-app
+    image: nginx
+    volumeMounts:
+   —name: my-volume
+      mountPath: /app/config
+  volumes:
+ —name: my-volume
+  
+-->volumes (at the bottom) creates a volume named my-volume and attaches it to the pod
+-->volumeMounts defines how the volume is mounted, including the file path by which the volume will be available from inside the containerIt is essential that the same -->volume name is used in both places—the volume declaration and the volumeMounts property.
 
-**Persistent Volume (PV)** − It’s a piece of network storage that has been provisioned by the administrator. It’s a resource in the cluster which is independent of any individual pod that uses the PV. <br> 
-
-**Persistent Volume Claim (PVC)** − The storage requested by Kubernetes for its pods is known as PVC. The user does not need to know the underlying provisioning. The claims must be created in the same namespace where the pod is created.<br>  
-
-
- 
-
-kind: PersistentVolume → We have defined the kind as PersistentVolume which tells kubernetes that the yaml file being used is to create the Persistent Volume.<br> 
-
-name: pv0001 → Name of PersistentVolume that we are creating.<br> 
-
-capacity: → This spec will define the capacity of PV that we are trying to create.<br> 
-
-storage: 10Gi → This tells the underlying infrastructure that we are trying to claim 10Gi space on the defined path.<br> 
-
-ReadWriteOnce → This tells the access rights of the volume that we are creating.<br> 
-
-path: "/tmp/data01" → This definition tells the machine that we are trying to create volume under this path on the underlying infrastructure.<br> 
-
-Creating PV <br>
-
-kubectl create –f local-01.yaml <br>
-persistentvolume "pv0001" created <br>
-
-**Persistent Volume Claim (PVC)**− The storage requested by Kubernetes for its pods is known as PVC. The user does not need to know the underlying provisioning. The claims must be created in the same namespace where the pod is created. <br>
-
- 
-
-
-kind: PersistentVolume → We have defined the kind as PersistentVolume which tells kubernetes that the yaml file being used is to create the Persistent Volume.
-name: pv0001 → Name of PersistentVolume that we are creating. <br>
-
-capacity: → This spec will define the capacity of PV that we are trying to create. <br>
-
-storage: 10Gi → This tells the underlying infrastructure that we are trying to claim 10Gi space on the defined path.<br> 
-
-ReadWriteOnce → This tells the access rights of the volume that we are creating.<br> 
-
-path: "/tmp/data01" → This definition tells the machine that we are trying to create volume under this path on the underlying infrastructure.<br> 
-
-volumeMounts: → This is the path in the container on which the mounting will take place.<br> 
-
-Volume: → This definition defines the volume definition that we are going to claim. <br>
-
-persistentVolumeClaim: → Under this, we define the volume name which we are going to use in the defined pod.<br> 
-
-7. **Deployment** 
+**Deployment** 
 
 In order to create the replicas of pod we use deployment component which provide blue print of a pod.You create deployment where you can scale up or down the no of pods required. <br>
 Db can’t be replicated via deployment .so this replica set can be done by statefulset for databases such as mysql, elasticsearch, mongo db.<br> 
 
-8. **Statefulset**  
+**Statefulset**  
 
  This take care of databases replucation such as mongodb,elasticsearch, mysql etc this approach of deploying database using statefulset is tedious so it is always recommended to use databases outside kubernetes cluster.<br> 
 
@@ -353,11 +324,11 @@ To access the application from browser,we need to create a NodePort Service.<br>
 
 Expose pod with a service (NodePort Service) to access the application externally (from internet)<br> 
 
-port: Port on which node port service listens in Kubernetes cluster internally <br>
+**port**: Port on which node port service listens in Kubernetes cluster internally <br>
 
-targetPort: We define container port here on which our application is running.<br> 
+**targetPort**: We define container port here on which our application is running.<br> 
 
-NodePort: Worker Node port on which we can access our application.<br> 
+**NodePort**: Worker Node port on which we can access our application.<br> 
 
 # Create a Pod 
 
@@ -507,7 +478,7 @@ Pod is the samleest unit ,but we are creating deployment abstraction over pods.<
 
  There are 3 parts in these configuration<br> 
 
- **[root@localhost centos]# cat mongo-configmap.yaml**
+**[root@localhost centos]# cat mongo-configmap.yaml**
  
 ![mongo-configmap yaml ](https://user-images.githubusercontent.com/121296386/210205592-80516dd9-a620-434c-8428-7977f5c55e9d.png)
 kubectl apply -f mongo-confipmap.yaml
@@ -674,12 +645,9 @@ LoadBalancer. Exposes the service via the cloud provider’s load balancer.
 ExternalName. Maps a service to a predefined externalName field by returning a value for the CNAME record. 
 
  
+# Kubernetes — Service Types 
 
- 
-
-Kubernetes — Service Types 
-
-1. ClusterIP 
+**1. ClusterIP** 
 
 ClusterIP is the default and most common service type. 
 
@@ -689,15 +657,15 @@ You cannot make requests to service (pods) from outside the cluster.
 
 You can optionally set cluster IP in the service definition file. 
 
-Use Cases 
+**Use Cases** 
 
 Inter service communication within the cluster. For example, communication between the front-end and back-end components of your app. 
 
-Example 
+**Example**
 
 ![clusterip](https://user-images.githubusercontent.com/121296386/210247919-20de7f3d-8bea-4eba-b504-ce01319ec112.png)
 
-2. NodePort 
+**2. NodePort** 
 
 NodePort service is an extension of ClusterIP service. A ClusterIP Service, to which the NodePort Service routes, is automatically created. 
 
@@ -711,7 +679,7 @@ Node port must be in the range of 30000–32767. Manually allocating a port to t
 
 If you are going to choose node port explicitly, ensure that the port was not already used by another service. 
 
-Use Cases 
+**Use Cases** 
 
 When you want to enable external connectivity to your service. 
 
@@ -719,11 +687,11 @@ Using a NodePort gives you the freedom to set up your own load balancing solutio
 
 Prefer to place a load balancer above your nodes to avoid node failure. 
 
-Example 
+**Example** 
 
 ![Nodeport](https://user-images.githubusercontent.com/121296386/210247958-15e0207f-5245-45bf-8005-d9ef4dc185df.png)
  
-3. LoadBalancer 
+**3.LoadBalancer** 
 
 LoadBalancer service is an extension of NodePort service. NodePort and ClusterIP Services, to which the external load balancer routes, are automatically created. 
 
@@ -739,17 +707,17 @@ The actual creation of the load balancer happens asynchronously.
 
 Every time you want to expose a service to the outside world, you have to create a new LoadBalancer and get an IP address. 
 
-Use Cases 
+**Use Cases** 
 
 When you are using a cloud provider to host your Kubernetes cluster. 
 
 This type of service is typically heavily dependent on the cloud provider. 
 
-Example 
+**Example** 
 
 ![loadbalancer](https://user-images.githubusercontent.com/121296386/210248003-4c13ac1a-6cef-4a72-ac48-bd74814d55e1.png)
  
-4. ExternalName 
+**4.ExternalName** 
 
 Services of type ExternalName map a Service to a DNS name, not to a typical selector such as my-service. 
 
@@ -759,13 +727,13 @@ It maps the Service to the contents of the externalName field (e.g. foo.bar.exam
 
 No proxying of any kind is established. 
 
-Use Cases 
+**Use Cases**
 
 This is commonly used to create a service within Kubernetes to represent an external datastore like a database that runs externally to Kubernetes. 
 
 You can use that ExternalName service (as a local service) when Pods from one namespace to talk to a service in another namespace. 
 
-Example 
+**Example** 
 
 ![externalip](https://user-images.githubusercontent.com/121296386/210247945-29b7abf8-a5d0-404c-b3a2-4ae26e15d45f.png)
  
