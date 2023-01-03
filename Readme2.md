@@ -290,8 +290,8 @@ A ConfigMap enables injecting configuration data into pods. Data stored within a
 
 There are two steps involved in creating a volume and making it accessible to a pod:
 
--->Declaring it in the spec:volumes property of the pod template, and then deploying the pod on some nodes<br>
--->Mounting the volume to a specific container using the spec:containers:<name>:volumeMounts property<r>
+-->Declaring it in the spec:volumes property of the pod template, and then deploying the pod on some nodes.<br>
+-->Mounting the volume to a specific container using the spec:containers:<name>:volumeMounts property.<br>
 When you create a volume, you must also mount it to a container, and you may not mount a volume without declaring it in the pod template.<br>
   
 **yaml configuration**
