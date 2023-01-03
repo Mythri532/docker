@@ -333,19 +333,19 @@ persistentvolume "pv0001" created <br>
 
  
 
-kind: PersistentVolume ---------> 1 <br>
-apiVersion: v1 <br>
+kind: PersistentVolume ---------> 1 
+apiVersion: v1 
 metadata:<br> 
-   name: pv0001 ------------------> 2 <br>
-   labels: <br>
+   &nbsp;name: pv0001 ------------------> 2 
+   &nbsp;labels: <br>
       type: local <br>
 spec: <br>
-   capacity: -----------------------> 3 <br>
+   capacity: -----------------------> 3
       storage: 10Gi ----------------------> 4 <br>
    accessModes: <br>
       - ReadWriteOnce -------------------> 5<br> 
       hostPath: <br>
-         path: "/tmp/data01" --------------------------> 6<br> 
+         path: "/tmp/data01" --------------------------> 
 
 kind: PersistentVolume → We have defined the kind as PersistentVolume which tells kubernetes that the yaml file being used is to create the Persistent Volume.
 name: pv0001 → Name of PersistentVolume that we are creating. <br>
