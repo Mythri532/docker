@@ -247,54 +247,54 @@ If the url is https://domain-name:port then the request is first forwarded to in
 
 If the application need connection to database endpoint, if the database url changes then it would be difficult task to rebuild the image again.So for this purpose configMap component is used in which we configure database url, db username, db password so that any changes can be applied without the need to rebuild the image.It provides external configuratin for your application.<br> 
 
-**secret** 
+**Secret** 
 
 Which used to store secret data such as username and password I.e in base64 encoded format.<br> 
 
 Note: If pods deleted automatically associated resources also deleted.<br>
-If the node fails automatically the pod will be deleted. <br>
+If the node fails automatically the pod will be deleted.<br>
 
-Once the resources being terminated there is no chance to restart them same resources a gain, we can start like same specs other resources from our scripts and<br> commands.The volumes are mapped with pods are available until pod available , if pod or node dies those will be deleted.<br>
+Once the resources being terminated there is no chance to restart them same resources a gain, we can start like same specs other resources from our scripts and commands.The volumes are mapped with pods are available until pod available , if pod or node dies those will be deleted.<br>
 
-**VOLUMES** 
+**Volumes** 
 
 Kubernetes cluster does not take care of data storage . Whenever the pod is restarted the older data is lost .Attaches physical hardware on a <br>harddrive to your pod that could be on local machine I.e same server node where the pod is running or remotei.e outside the kubernetes<br> cluster.<br>
 
 **Types of volumes** 
 
-**emptyDir** − It is a type of volume that is created when a Pod is first assigned to a Node. It remains active as long as the Pod is running on<br> that node. The volume is initially empty and the containers in the pod can read and write the files in the emptyDir volume. Once the<br> Pod is removed from the node, the data in the emptyDir is erased. <br>
+**EmptyDir** − It is a type of volume that is created when a Pod is first assigned to a Node. It remains active as long as the Pod is running on that node. The volume is initially empty and the containers in the pod can read and write the files in the emptyDir volume. Once the<br> Pod is removed from the node, the data in the emptyDir is erased. <br>
 
-**hostPath** − This type of volume mounts a file or directory from the host node’s filesystem into your pod.<br> 
+**HostPath** − This type of volume mounts a file or directory from the host node’s filesystem into your pod.<br> 
 
-**gcePersistentDisk** − This type of volume mounts a Google Compute Engine (GCE) Persistent Disk into your Pod. The data in a <br>gcePersistentDisk remains intact when the Pod is removed from the node. <br>
+**gcePersistentDisk** − This type of volume mounts a Google Compute Engine (GCE) Persistent Disk into your Pod. The data in a gcePersistentDisk remains intact when the Pod is removed from the node. <br>
 
-**awsElasticBlockStore** − This type of volume mounts an Amazon Web Services (AWS) Elastic Block Store into your Pod. Just like gcePersistentDisk,<br> the data in an awsElasticBlockStore remains intact when the Pod is removed from the node.<br> 
+**awsElasticBlockStore** − This type of volume mounts an Amazon Web Services (AWS) Elastic Block Store into your Pod. Just like gcePersistentDisk,the data in an awsElasticBlockStore remains intact when the Pod is removed from the node.<br> 
 
-**nfs** − An nfs volume allows an existing NFS (Network File System) to be mounted into your pod. The data in an nfs volume is not erased whengit pull --rebase origin master the<br> Pod is removed from the node. The volume is only unmounted.<br> 
+**nfs** − An nfs volume allows an existing NFS (Network File System) to be mounted into your pod. The data in an nfs volume is not erased whengit pull --rebase origin master the Pod is removed from the node. The volume is only unmounted.<br> 
 
 **iscsi** − An iscsi volume allows an existing iSCSI (SCSI over IP) volume to be mounted into your pod. <br>
 
-**flocker** − It is an open-source clustered container data volume manager. It is used for managing data volumes. A flocker volume allows a<br> Flocker dataset to be mounted into a pod. If the dataset does not exist in Flocker, then you first need to create it by using the <br>Flocker API. <br>
+**flocker** − It is an open-source clustered container data volume manager. It is used for managing data volumes. A flocker volume allows a Flocker dataset to be mounted into a pod. If the dataset does not exist in Flocker, then you first need to create it by using the Flocker API. <br>
 
 **glusterfs** − Glusterfs is an open-source networked filesystem. A glusterfs volume allows a glusterfs volume to be mounted into your pod.<br> 
 
-**rbd** − RBD stands for Rados Block Device. An rbd volume allows a Rados Block Device volume to be mounted into your pod. Data remains preserved<br>  after the Pod is removed from the node. <br> 
+**rbd** − RBD stands for Rados Block Device. An rbd volume allows a Rados Block Device volume to be mounted into your pod. Data remains preserved after the Pod is removed from the node. <br> 
 
-cephfs − A cephfs volume allows an existing CephFS volume to be mounted into your pod. Data remains intact after the Pod is removed from the<br> node.<br>  
+cephfs − A cephfs volume allows an existing CephFS volume to be mounted into your pod. Data remains intact after the Pod is removed from the node.<br>  
 
 **gitRepo** − A gitRepo volume mounts an empty directory and clones a git repository into it for your pod to use.<br>  
 
 **secret** − A secret volume is used to pass sensitive information, such as passwords, to pods.<br>  
 
-**persistentVolumeClaim** − A persistentVolumeClaim volume is used to mount a PersistentVolume into a pod. PersistentVolumes are a way for<br> users to “claim” durable storage (such as a GCE PersistentDisk or an iSCSI volume) without knowing the details of the particular cloud<br>  environment.<br>  
+**persistentVolumeClaim** − A persistentVolumeClaim volume is used to mount a PersistentVolume into a pod. PersistentVolumes are a way for users to “claim” durable storage (such as a GCE PersistentDisk or an iSCSI volume) without knowing the details of the particular cloud<br>  environment.<br>  
 
-**downwardAPI** − A downwardAPI volume is used to make downward API data available to applications. It mounts a directory and writes the<br>  requested<br> data in plain text files.<br>  
+**downwardAPI** − A downwardAPI volume is used to make downward API data available to applications. It mounts a directory and writes the requested data in plain text files.<br>  
 
 **azureDiskVolume** − An AzureDiskVolume is used to mount a Microsoft Azure Data Disk into a Pod.<br>  
 
-**Persistent Volume (PV)** − It’s a piece of network storage that has been provisioned by the administrator. It’s a resource in the cluster<br>  which is independent of any individual pod that uses the PV. <br> 
+**Persistent Volume (PV)** − It’s a piece of network storage that has been provisioned by the administrator. It’s a resource in the cluster which is independent of any individual pod that uses the PV. <br> 
 
-**Persistent Volume Claim (PVC)** − The storage requested by Kubernetes for its pods is known as PVC. The user does not need to know the<br>  underlying provisioning. The claims must be created in the same namespace where the pod is created.<br>  
+**Persistent Volume Claim (PVC)** − The storage requested by Kubernetes for its pods is known as PVC. The user does not need to know the underlying provisioning. The claims must be created in the same namespace where the pod is created.<br>  
 
 kind: PersistentVolume ---------> 1 <br> 
 apiVersion: v1 <br> 
@@ -329,7 +329,7 @@ Creating PV <br>
 kubectl create –f local-01.yaml <br>
 persistentvolume "pv0001" created <br>
 
-**Persistent Volume Claim (PVC)**− The storage requested by Kubernetes for its pods is known as PVC. The user does not need to know the<br> underlying provisioning. The claims must be created in the same namespace where the pod is created. <br>
+**Persistent Volume Claim (PVC)**− The storage requested by Kubernetes for its pods is known as PVC. The user does not need to know the underlying provisioning. The claims must be created in the same namespace where the pod is created. <br>
 
  
 
@@ -347,7 +347,7 @@ spec: <br>
       hostPath: <br>
          path: "/tmp/data01" --------------------------> 6<br> 
 
-kind: PersistentVolume → We have defined the kind as PersistentVolume which tells kubernetes that the yaml file being used is to create the <br>Persistent Volume. <br>
+kind: PersistentVolume → We have defined the kind as PersistentVolume which tells kubernetes that the yaml file being used is to create the Persistent Volume.
 name: pv0001 → Name of PersistentVolume that we are creating. <br>
 
 capacity: → This spec will define the capacity of PV that we are trying to create. <br>
@@ -366,12 +366,12 @@ persistentVolumeClaim: → Under this, we define the volume name which we are go
 
 7. **Deployment** 
 
-In order to create the replicas of pod we use deployment component which provide blue print of a pod.You create deployment where you can scale<br> up or down the no of pods required. <br>
+In order to create the replicas of pod we use deployment component which provide blue print of a pod.You create deployment where you can scale up or down the no of pods required. <br>
 Db can’t be replicated via deployment .so this replica set can be done by statefulset for databases such as mysql, elasticsearch, mongo db.<br> 
 
 8. **Statefulset**  
 
- This take care of databases replucation such as mongodb,elasticsearch, mysql etc this approach of deploying database using statefulset is<br> tedious so it is always recommended to use databases outside kubernetes cluster.<br> 
+ This take care of databases replucation such as mongodb,elasticsearch, mysql etc this approach of deploying database using statefulset is tedious so it is always recommended to use databases outside kubernetes cluster.<br> 
 
 **Services:** 
 
@@ -515,7 +515,7 @@ kubectl get svc
  
 # Minikube setup 
 
-To Test on local machine minikube can be installed. Kubectl which will interact with kubernetes cluster . Minikube which has master process<br> and worker proces running in same node <br>
+To Test on local machine minikube can be installed. Kubectl which will interact with kubernetes cluster . Minikube which has master process and worker proces running in same node <br>
 
 Kubectl get nodes- displays the nodes <br>
 
@@ -567,11 +567,11 @@ kubectl apply -f nginx-deployment.yaml<br>
 
 **Labels and Selectors:**
 
-Labels are key-value pairs which are attached to pods, replication controller and services. They are used as identifying attributes for objects such as pods and<br> replication controller. They can be added to an object at creation time and can be added or modified at the run time.<br>
+Labels are key-value pairs which are attached to pods, replication controller and services. They are used as identifying attributes for objects such as pods and replication controller. They can be added to an object at creation time and can be added or modified at the run time.<br>
  
 **Selectors:**<br>
 
-Labels do not provide uniqueness. In general, we can say many objects can carry the same labels. Labels selector are core grouping primitive in Kubernetes.They are<br> used by the users to select a set of objects.<br>
+Labels do not provide uniqueness. In general, we can say many objects can carry the same labels. Labels selector are core grouping primitive in Kubernetes.They are used by the users to select a set of objects.<br>
 
 Kubernetes API currently supports two type of selectors −<br>
 
