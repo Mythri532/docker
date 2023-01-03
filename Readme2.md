@@ -28,7 +28,7 @@ Predictable infrastructure which is going to be created<br>
 
 This Master node which control the cluster state and nodes.<br>   
 
-**API Server** - The API Server provides APIs to support lifecycle orchestration scaling,updates and so on for different types of applications. It also acts as the gateway to the cluster, which get the initial request to update the cluster , query to cluster so the API server must be accessible by clients from outside the cluster. Acts as a gatekeeper to authenticate the request to cluster .Clients authenticate <br>via the API Server, and also use it as a proxy/tunnel to nodes and pods (and services).<br>
+**API Server** - The API Server provides APIs to support lifecycle orchestration scaling,updates and so on for different types of applications. It also acts as the gateway to the cluster, which get the initial request to update the cluster , query to cluster so the API server must be accessible by clients from outside the cluster. Acts as a gatekeeper to authenticate the request to cluster .Clients authenticate via the API Server, and also use it as a proxy/tunnel to nodes and pods (and services).<br>
 
 Whenever pods to be created or new service ,deploy new application ,initially user should interact with master node api server further request will be sent to other processes.It is the entrypoint to the cluster. <br>
 
@@ -240,13 +240,12 @@ kubeadm join --discovery-token cfgrty.1234567890jyrfgd  --discovery-token-ca-cer
 **Pod** – smallest unit of  k8s, abstraction over container.Usually one application per pod.Each pod get its own ip address(internal ip address).whenever the pod
 dies new pod with new ip gets created<br>  
 
-**Service** – Assigns a permannent ip address to a pod. Lifecycle of pod and application is not connected. Whenever you want to access the app through browser so<<br> external service can be used and if you wantto access the database with public access then we can create internalservice.<br>
+**Service** – Assigns a permannent ip address to a pod. Lifecycle of pod and application is not connected. Whenever you want to access the app through browser so external service can be used and if you wantto access the database with public access then we can create internalservice.<br>
 If the url is https://domain-name:port then the request is first forwarded to ingress and then to service.<br>
 
 **ConfigMap** 
 
-If the application need connection to database endpoint, if the database url changes then it would be difficult task to rebuild the image again.<br>
-So for this purpose configMap component is used in which we configure database url, db username, db password so that any changes can be applied without the need to<br> rebuild the image.It provides external configuratin for your application.<br> 
+If the application need connection to database endpoint, if the database url changes then it would be difficult task to rebuild the image again.So for this purpose configMap component is used in which we configure database url, db username, db password so that any changes can be applied without the need to rebuild the image.It provides external configuratin for your application.<br> 
 
 **secret** 
 
