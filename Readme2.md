@@ -336,8 +336,8 @@ persistentvolume "pv0001" created <br>
 kind: PersistentVolume ---------> 1 
 apiVersion: v1 
 metadata:<br> 
-   &nbsp;name: pv0001 ------------------> 2 
-   &nbsp;labels: <br>
+&nbsp;&nbsp;name: pv0001 ------------------> 2 
+&nbsp;&nbsp;labels: <br>
       type: local <br>
 spec: <br>
    capacity: -----------------------> 3
