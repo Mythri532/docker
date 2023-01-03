@@ -307,7 +307,9 @@ When you create a volume, you must also mount it to a container, and you may not
  —name: my-volume<br>
   
 -->volumes (at the bottom) creates a volume named my-volume and attaches it to the pod<br>
--->volumeMounts defines how the volume is mounted, including the file path by which the volume will be available from inside the containerIt is essential that the same -->volume name is used in both places—the volume declaration and the volumeMounts property.<br>
+-->volumeMounts defines how the volume is mounted, including the file path by which the volume will be available from inside the container.
+  It is essential that the same. 
+-->volume name is used in both places—the volume declaration and the volumeMounts property.
 
 **Deployment** 
 
