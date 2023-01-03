@@ -260,7 +260,7 @@ Once the resources being terminated there is no chance to restart them same reso
 
 Kubernetes cluster does not take care of data storage . Whenever the pod is restarted the older data is lost .Attaches physical hardware on a harddrive to your pod that could be on local machine I.e same server node where the pod is running or remotei.e outside the kubernetes<br> cluster.<br>
 
-**Types of Volumes*
+**Types of Volumes**
 
 **PersistentVolume (PV)**
 
