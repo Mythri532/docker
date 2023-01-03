@@ -80,8 +80,7 @@ Command-line/terminal window <br>
 
 **Step 1: Configure Kubernetes Repository** 
 
-Kubernetes packages are not available from official CentOS 7 repositories. This step needs to be performed on the Master Node, and each Worker Node<br>
-you plan on utilizing for your container setup. Enter the following command to retrieve the Kubernetes repositories.<br> 
+Kubernetes packages are not available from official CentOS 7 repositories. This step needs to be performed on the Master Node, and each Worker Node you plan on utilizing for your container setup. Enter the following command to retrieve the Kubernetes repositories.<br> 
 
 These 3 basic packages are required to be able to use Kubernetes.<br> 
 
