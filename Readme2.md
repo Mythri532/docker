@@ -28,9 +28,9 @@ Predictable infrastructure which is going to be created<br>
 
 This Master node which control the cluster state and nodes.<br>   
 
-**API Server** - The API Server provides APIs to support lifecycle orchestration scaling,updates and so on for different types of applications. It<br> also acts as the gateway to the cluster, which get the initial request to update the cluster , query to cluster so the API server must<br> be accessible by clients from outside the cluster. Acts as a gatekeeper to authenticate the request to cluster .Clients authenticate <br>via the API Server, and also use it as a proxy/tunnel to nodes and pods (and services).<br>
+**API Server** - The API Server provides APIs to support lifecycle orchestration scaling,updates and so on for different types of applications. It also acts as the gateway to the cluster, which get the initial request to update the cluster , query to cluster so the API server must<br> be accessible by clients from outside the cluster. Acts as a gatekeeper to authenticate the request to cluster .Clients authenticate <br>via the API Server, and also use it as a proxy/tunnel to nodes and pods (and services).<br>
 
-Whenever pods to be created or new service ,deploy new application ,initially user should interact with master node api server further request will be sent to other<br> processes.It is the entrypoint to the cluster. <br>
+Whenever pods to be created or new service ,deploy new application ,initially user should interact with master node api server further request will be sent to other processes.It is the entrypoint to the cluster. <br>
 
 **The Scheduler**<br> 
 
