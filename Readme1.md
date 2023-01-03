@@ -6,7 +6,11 @@ Docker is a containerization platform which packages your application and all it
 **Docker Container**<br>
 Docker containers include the application and all of its dependencies. It shares the kernel with other containers, running as isolated processes in user space on the host operating system. Docker containers are not tied to any specific infrastructure: they run on any computer, on any infrastructure, and in any cloud.
 
-# Docker Architecture Components
+# Docker Architecture and Components
+
+![Docker Architecture](https://user-images.githubusercontent.com/121296386/210309642-be20dc75-4b20-40c4-846c-44d870da2274.png)
+
+![Docker workflow](https://user-images.githubusercontent.com/121296386/210309658-e4e3e9cb-e88e-42f8-a675-facc1cf6b4ba.png)
 
 **a) Docker Daemon** - listens to Docker API requests and manages Docker objects such as images, containers, networks  and volumes. 
 
