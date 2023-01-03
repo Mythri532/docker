@@ -1,6 +1,6 @@
                                                              # Overview of Kubernetes 
 # What is Kubernetes?
-Kubernetes (also known as k8s or “kube”) is an open source container orchestration platform that automates many of the manual processes<br> involved in deploying, managing, and scaling containerized applications.<br>
+Kubernetes (also known as k8s or “kube”) is an open source container orchestration platform that automates many of the manual processes involved in deploying, managing, and scaling containerized applications.<br>
 
 # Features of Kubernetes 
 
@@ -28,19 +28,19 @@ Predictable infrastructure which is going to be created<br>
 
 This Master node which control the cluster state and nodes.<br>   
 
-**API Server** - The API Server provides APIs to support lifecycle orchestration scaling,updates and so on for different types of applications. It also acts as the gateway to the cluster, which get the initial request to update the cluster , query to cluster so the API server must<br> be accessible by clients from outside the cluster. Acts as a gatekeeper to authenticate the request to cluster .Clients authenticate <br>via the API Server, and also use it as a proxy/tunnel to nodes and pods (and services).<br>
+**API Server** - The API Server provides APIs to support lifecycle orchestration scaling,updates and so on for different types of applications. It also acts as the gateway to the cluster, which get the initial request to update the cluster , query to cluster so the API server must be accessible by clients from outside the cluster. Acts as a gatekeeper to authenticate the request to cluster .Clients authenticate <br>via the API Server, and also use it as a proxy/tunnel to nodes and pods (and services).<br>
 
 Whenever pods to be created or new service ,deploy new application ,initially user should interact with master node api server further request will be sent to other processes.It is the entrypoint to the cluster. <br>
 
 **The Scheduler**<br> 
 
-It is a service in master responsible for distributing the workload. It is responsible for tracking utilization of working load on cluster<br> nodes and then placing the workload on which resources are available and accept the workload. In other words, this is the mechanism responsible for allocating pods to available nodes. The scheduler is responsible for workload utilization and allocating pod to new node.<br> 
+It is a service in master responsible for distributing the workload. It is responsible for tracking utilization of working load on cluster nodes and then placing the workload on which resources are available and accept the workload. In other words, this is the mechanism responsible for allocating pods to available nodes. The scheduler is responsible for workload utilization and allocating pod to new node.<br> 
 
 schedule new pod---> api server---->scheduler ---->where to put the pod.<br> 
 
 **Controller Manager** <br>
 
-This controller manager detects the cluster state changes when the pods die.In general, it can be considered as a daemon which runs in<br> nonterminating loop and is responsible for collecting and sending information to API server. It works toward getting the shared state of cluster and then make changes to bring the current status of the server to the desired state. The key controllers are replication controller, endpoint controller, namespace controller, and service account controller. The controller manager runs different kind of controllers to handle nodes, endpoints.<br>
+This controller manager detects the cluster state changes when the pods die.In general, it can be considered as a daemon which runs in<nonterminating loop and is responsible for collecting and sending information to API server. It works toward getting the shared state of cluster and then make changes to bring the current status of the server to the desired state. The key controllers are replication controller, endpoint controller, namespace controller, and service account controller. The controller manager runs different kind of controllers to handle nodes, endpoints.<br>
 
 Controller manager--> scheduler --> kubelet<br>
 
@@ -60,11 +60,11 @@ Docker which is used as container runtime which helps in running the    encapsul
 
  **kubelet**<br>  
 
-Kubelet which schedules the pod and interacts with both container and node.Kubelet is responsible for taking the configuration and start the<br> pod with a container inside it. Kubelet is kubernetes process which assign reaources such as ram,cpu from node to container.<br>
+Kubelet which schedules the pod and interacts with both container and node.Kubelet is responsible for taking the configuration and start the pod with a container inside it. Kubelet is kubernetes process which assign reaources such as ram,cpu from node to container.<br>
 
 **Kube-proxy**<br>
 
-This is a proxy service which runs on each node and helps in making services available to the external host. It helps in forwarding the<br> request to correct containers and is capable of performing primitive load balancing. It makes sure that the networking environment is <br>predictable and accessible and at the same time it is isolated as well. It manages pods on node, volumes, secrets, creating new<br> containers’ health checkup, etc. <br>
+This is a proxy service which runs on each node and helps in making services available to the external host. It helps in forwarding the<br> request to correct containers and is capable of performing primitive load balancing. It makes sure that the networking environment is predictable and accessible and at the same time it is isolated as well. It manages pods on node, volumes, secrets, creating new<br> containers’ health checkup, etc. <br>
 
 **Kubernetes setup in centos 7** 
 
@@ -133,7 +133,7 @@ ip master.phoenixnap.com master-node<br>
 ip node1. phoenixnap.com node1 worker-node<br> 
 
 **Step 4: Configure Firewall** <br>
-The nodes, containers, and pods need to be able to communicate across the cluster to perform their functions. Firewalld is enabled in CentOS<br> by default on the front-end. Add the following ports by entering the listed commands.<br> 
+The nodes, containers, and pods need to be able to communicate across the cluster to perform their functions. Firewalld is enabled in CentOS by default on the front-end. Add the following ports by entering the listed commands.<br> 
 
 On the Master Node enter: <br>
 
@@ -195,7 +195,7 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16<br>
 
 Initialize a cluster by executing the command <br>
 
-The process might take several minutes to complete based on network speed. Once this command finishes, it displays a kubeadm join message.<br> Make a note of the entry and use it to join worker nodes to the cluster at a later stage. <br>
+The process might take several minutes to complete based on network speed. Once this command finishes, it displays a kubeadm join message.Make a note of the entry and use it to join worker nodes to the cluster at a later stage. <br>
 
 **Step 2: Manage Cluster as Regular User** <br>
 
@@ -237,7 +237,7 @@ kubeadm join --discovery-token cfgrty.1234567890jyrfgd  --discovery-token-ca-cer
 
 **Node** - Nodes are the physical servers or VMs<br> 
 
-**Pod** – smallest unit of  k8s, abstraction over container.Usually one application per pod.Each pod get its own ip address(internal ip address).whenever the pod <br>
+**Pod** – smallest unit of  k8s, abstraction over container.Usually one application per pod.Each pod get its own ip address(internal ip address).whenever the pod
 dies new pod with new ip gets created<br>  
 
 **Service** – Assigns a permannent ip address to a pod. Lifecycle of pod and application is not connected. Whenever you want to access the app through browser so<<br> external service can be used and if you wantto access the database with public access then we can create internalservice.<br>
