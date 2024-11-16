@@ -8,7 +8,7 @@ stages{
   }
   stage('deploy'){
 steps{
-  sh './Ram.sh'
+  sh 'chmod +x ./Ram.sh'
 }
 }
 }
